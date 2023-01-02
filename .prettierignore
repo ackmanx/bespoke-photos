@@ -1,0 +1,8 @@
+.idea/
+.next/
+public/
+build/
+out/
+
+yarn.lock
+*.md

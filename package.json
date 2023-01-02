@@ -1,0 +1,28 @@
+{
+  "name": "bespoke-photos",
+  "scripts": {
+    "start": "electron-forge start",
+    "prettier": "prettier --config ./prettier.config.js --write './**/*.{js,jsx,json,ts,tsx}'",
+    "make": "electron-forge make",
+    "package": "electron-forge package"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-deb": "^6.0.4",
+    "@electron-forge/maker-rpm": "^6.0.4",
+    "@electron-forge/maker-squirrel": "^6.0.4",
+    "@electron-forge/maker-zip": "^6.0.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "electron": "^22.0.0",
+    "prettier": "^2.8.1"
+  },
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "main": "main.js",
+  "version": "1.0.0",
+  "description": "A very specific photo organizer",
+  "author": "Eric",
+  "license": "MIT",
+  "private": true
+}
