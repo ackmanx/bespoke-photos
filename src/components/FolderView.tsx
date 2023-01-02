@@ -1,4 +1,5 @@
 import { Tree } from '@geist-ui/react'
+import { useEffect, useState } from 'react'
 
 interface File {
   type: 'directory' | 'file'
@@ -7,88 +8,17 @@ interface File {
 }
 
 export const FolderView = () => {
-  const files: File[] = [
-    {
-      type: 'directory',
-      name: 'bin',
-      files: [
-        {
-          type: 'file',
-          name: 'cs.js',
-        },
-      ],
-    },
-    {
-      type: 'directory',
-      name: 'docs',
-      files: [
-        {
-          type: 'file',
-          name: 'controllers.md',
-        },
-        {
-          type: 'directory',
-          name: 'docs',
-          files: [
-            {
-              type: 'directory',
-              name: 'docs',
-              files: [
-                {
-                  type: 'file',
-                  name: 'controllers.md',
-                },
-                {
-                  type: 'file',
-                  name: 'es6.md',
-                },
-                {
-                  type: 'file',
-                  name: 'production.md',
-                },
-                {
-                  type: 'file',
-                  name: 'views.md',
-                },
-              ],
-            },
-            {
-              type: 'file',
-              name: 'controllers.md',
-            },
-            {
-              type: 'file',
-              name: 'es6.md',
-            },
-            {
-              type: 'file',
-              name: 'production.md',
-            },
-            {
-              type: 'file',
-              name: 'views.md',
-            },
-          ],
-        },
-        {
-          type: 'file',
-          name: 'es6.md',
-        },
-        {
-          type: 'file',
-          name: 'production-production-production-production-production-.md',
-        },
-        {
-          type: 'file',
-          name: 'views.md',
-        },
-      ],
-    },
-  ]
+  const [folders, setFolders] = useState<any>()
+
+  useEffect(() => {
+    window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep').then((tree) => setFolders(tree))
+  }, [])
+
+  console.log(777, folders)
 
   return (
     <div style={{ border: '1px solid blue', width: '30%' }}>
-      <Tree value={files} />
+      <Tree value={folders} />
     </div>
   )
 }

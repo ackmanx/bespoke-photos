@@ -1,6 +1,5 @@
-const { app, BrowserWindow, ipcMain, dialog } = require('electron')
+const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
-const url = require('url')
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -24,6 +23,7 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  ipcMain.handle('get-directory-tree', require('./get-directory-tree').handleGetDirectoryTree)
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
 
   createWindow()

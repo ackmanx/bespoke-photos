@@ -1,5 +1,5 @@
 const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('bs', {
-  loadDirectory: (path) => ipcRenderer.invoke('load-directory', path),
+  getDirectoryTree: (path) => ipcRenderer.invoke('get-directory-tree', path),
 })
