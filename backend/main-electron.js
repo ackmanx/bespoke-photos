@@ -1,14 +1,17 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const url = require('url')
 
-// Remove macOS app menu until I decide I need one
-// Menu.setApplicationMenu(null)
+async function handleFileOpen() {
+  const { canceled, filePaths } = await dialog.showOpenDialog({ properties: ['openDirectory'] })
+
+  if (!canceled) {
+    return filePaths[0]
+  }
+}
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -24,17 +27,20 @@ const createWindow = () => {
       slashes: true,
     })
 
+  mainWindow.maximize()
   mainWindow.loadURL(startUrl)
 
-  // if (!app.isPackaged) {
-  mainWindow.webContents.openDevTools()
-  // }
+  if (!app.isPackaged) {
+    mainWindow.webContents.openDevTools()
+  }
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  ipcMain.handle('dialog:openFile', handleFileOpen)
+
   createWindow()
 
   app.on('activate', () => {
