@@ -1,5 +1,5 @@
-function handleLoadDirectory() {
-  return 'yes!'
+function handleLoadDirectory(event, path) {
+  return `say yes to ${path}`
 }
 
 module.exports = {

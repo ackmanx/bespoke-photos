@@ -3,7 +3,7 @@ import './App.css'
 export const App = () => {
   const handle = async () => {
     // @ts-ignore
-    document.getElementById('filePath').innerText = await window.bs.loadDirectory()
+    document.getElementById('filePath').innerText = await window.bs.loadDirectory('this-is-my-path')
   }
 
   return (
