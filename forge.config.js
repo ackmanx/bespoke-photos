@@ -4,7 +4,9 @@ module.exports = {
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {},
+      config: {
+        name: 'cra_ef_typescript',
+      },
     },
     {
       name: '@electron-forge/maker-zip',

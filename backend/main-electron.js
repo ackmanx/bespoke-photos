@@ -1,11 +1,11 @@
-// Modules to control application life and create native browser window
 const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
+const url = require('url')
 
-Menu.setApplicationMenu(null)
+// Remove macOS app menu until I decide I need one
+// Menu.setApplicationMenu(null)
 
 const createWindow = () => {
-  // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
@@ -14,11 +14,21 @@ const createWindow = () => {
     },
   })
 
-  // and load the index.html of the app.
-  mainWindow.loadFile('index.html')
+  // Load the app
+  // This switch allows us to use a dev server or a production build
+  const startUrl =
+    process.env.WEB_URL ||
+    url.format({
+      pathname: path.join(__dirname, '../build/index.html'),
+      protocol: 'file',
+      slashes: true,
+    })
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.loadURL(startUrl)
+
+  // if (!app.isPackaged) {
+  mainWindow.webContents.openDevTools()
+  // }
 }
 
 // This method will be called when Electron has finished
