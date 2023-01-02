@@ -1,17 +1,16 @@
+import React from 'react'
+
+import { ActionsView } from './ActionsView'
 import './App.css'
+import { ContentView } from './ContentView'
+import { FolderView } from './FolderView'
 
 export const App = () => {
-  const handle = async () => {
-    // @ts-ignore
-    document.getElementById('filePath').innerText = await window.bs.loadDirectory('this-is-my-path')
-  }
-
   return (
-    <main>
-      <button type='button' id='btn' onClick={handle}>
-        Open a File
-      </button>
-      File path: <strong id='filePath'></strong>
+    <main style={{ display: 'flex' }}>
+      <FolderView />
+      <ContentView />
+      <ActionsView />
     </main>
   )
 }
