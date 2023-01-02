@@ -10,13 +10,7 @@ const createWindow = () => {
   })
 
   // This switch allows us to use a dev server or a production build
-  const startUrl =
-    process.env.WEB_URL ||
-    url.format({
-      pathname: path.join(__dirname, '../build/index.html'),
-      protocol: 'file',
-      slashes: true,
-    })
+  const startUrl = process.env.WEB_URL || `file://${path.join(__dirname, '../build/index.html')}}`
 
   mainWindow.maximize()
   mainWindow.loadURL(startUrl)
