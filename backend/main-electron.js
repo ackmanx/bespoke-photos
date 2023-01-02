@@ -2,14 +2,6 @@ const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 const path = require('path')
 const url = require('url')
 
-async function handleFileOpen() {
-  const { canceled, filePaths } = await dialog.showOpenDialog({ properties: ['openDirectory'] })
-
-  if (!canceled) {
-    return filePaths[0]
-  }
-}
-
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
     webPreferences: {
@@ -17,7 +9,6 @@ const createWindow = () => {
     },
   })
 
-  // Load the app
   // This switch allows us to use a dev server or a production build
   const startUrl =
     process.env.WEB_URL ||
@@ -39,7 +30,7 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  ipcMain.handle('dialog:openFile', handleFileOpen)
+  ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
 
   createWindow()
 
