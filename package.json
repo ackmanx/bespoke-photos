@@ -4,7 +4,7 @@
     "start": "BROWSER=none react-scripts start",
     "start:electron": "WEB_URL=http://localhost:3000 electron-forge start",
     "build": "react-scripts build",
-    "build:all": "yarn build; yarn make",
+    "go": "yarn build; yarn make",
     "make": "electron-forge make",
     "package": "electron-forge package",
     "prettier": "prettier --config ./prettier.config.js --write './**/*.{js,jsx,json,ts,tsx}'"
