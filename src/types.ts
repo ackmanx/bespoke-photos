@@ -1,11 +1,13 @@
 import { DataNode } from 'antd/es/tree'
 
-// These are defined in `preload.js`
+/*
+ * Expose an API for the UI layer to access the Node backend
+ * The API is declared in `backend/preload.js`
+ */
 export interface BespokeApi {
-  //todo majerus: add this back and have it return list of photos or videos
-  loadDirectory: (path: string) => Promise<any>
   // `number` type comes from Antd library, but I'm only ever using `string`
-  getDirectoryTree: (path: string | number) => Promise<DataNode[]>
+  loadDirectory: (path: string | number) => Promise<string[]>
+  getDirectoryTree: (path: string) => Promise<DataNode[]>
 }
 
 declare global {

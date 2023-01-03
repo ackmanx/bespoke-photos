@@ -12,7 +12,7 @@ export const FolderView = () => {
   }, [])
 
   const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
-    await window.bs.getDirectoryTree(node.key)
+    console.log(777, await window.bs.loadDirectory(node.key))
   }
 
   return (
