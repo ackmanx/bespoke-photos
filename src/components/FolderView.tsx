@@ -14,8 +14,6 @@ export const FolderView = () => {
     window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep').then((tree) => setFolders(tree))
   }, [])
 
-  console.log(777, folders)
-
   return (
     <div style={{ border: '1px solid blue', width: '30%' }}>
       <Tree value={folders} />
