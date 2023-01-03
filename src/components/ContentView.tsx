@@ -7,9 +7,11 @@ interface Props {
 export const ContentView = ({ images }: Props) => {
   return (
     <div style={{ flexGrow: 1 }}>
-      {images.map((image) => (
-        <Image key={image} src={`bs://${image}`} width={250} />
-      ))}
+      <Image.PreviewGroup>
+        {images.map((image) => (
+          <Image key={image} src={`bs://${image}`} width={250} />
+        ))}
+      </Image.PreviewGroup>
     </div>
   )
 }
