@@ -1,22 +1,23 @@
-import { Tree } from '@geist-ui/react'
+import { Tree } from 'antd'
+import type { DataNode, DirectoryTreeProps } from 'antd/es/tree'
 import { useEffect, useState } from 'react'
 
-interface File {
-  type: 'directory' | 'file'
-  name: string
-  files?: File[]
-}
+const { DirectoryTree } = Tree
 
 export const FolderView = () => {
-  const [folders, setFolders] = useState<any>()
+  const [folders, setFolders] = useState<DataNode[]>()
 
   useEffect(() => {
     window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep').then((tree) => setFolders(tree))
   }, [])
 
+  const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
+    await window.bs.getDirectoryTree(node.key)
+  }
+
   return (
-    <div style={{ border: '1px solid blue', width: '30%' }}>
-      <Tree value={folders} />
+    <div style={{ width: '30%' }}>
+      <DirectoryTree defaultExpandAll onSelect={onSelect} treeData={folders} />
     </div>
   )
 }

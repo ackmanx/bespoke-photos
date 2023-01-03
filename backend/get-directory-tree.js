@@ -11,13 +11,12 @@ async function getSubDirectories(directoryPath, node) {
       const nextDirectoryPath = path.resolve(directoryPath, file.name)
 
       const next = await getSubDirectories(nextDirectoryPath, {
-        type: 'directory',
-        name: file.name,
-        path: nextDirectoryPath,
-        files: [],
+        title: file.name,
+        key: nextDirectoryPath,
+        children: [],
       })
 
-      node.files.push(next)
+      node.children.push(next)
     }
   }
 
@@ -26,10 +25,9 @@ async function getSubDirectories(directoryPath, node) {
 
 async function handleGetDirectoryTree(event, path) {
   const folderTree = await getSubDirectories(path, {
-    type: 'directory',
-    name: path,
-    path: path,
-    files: [],
+    title: path,
+    key: path,
+    children: [],
   })
 
   return [folderTree]
