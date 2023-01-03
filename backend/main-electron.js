@@ -26,6 +26,9 @@ app.whenReady().then(() => {
   ipcMain.handle('get-directory-tree', require('./get-directory-tree').handleGetDirectoryTree)
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
 
+  // Electron won't let you access files via `files://` protocol
+  // But if you name your own protocol, you can use it like you would `files://`
+  // CSP needs to be updated in `index.html` to allow it too
   protocol.registerFileProtocol('bs', (request, callback) => {
     callback({ path: request.url.substring(5) })
   })
