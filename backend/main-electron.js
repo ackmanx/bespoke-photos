@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require('electron')
+const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const path = require('path')
 
 const createWindow = () => {
@@ -25,6 +25,10 @@ const createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.handle('get-directory-tree', require('./get-directory-tree').handleGetDirectoryTree)
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
+
+  protocol.registerFileProtocol('bs', (request, callback) => {
+    callback({ path: request.url.substring(5) })
+  })
 
   createWindow()
 

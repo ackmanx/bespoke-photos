@@ -1,3 +1,3 @@
 export const SidebarView = () => {
-  return <div style={{ width: '20%', backgroundColor: '#efefef' }}></div>
+  return <div style={{ minWidth: '250px', backgroundColor: '#efefef' }}></div>
 }

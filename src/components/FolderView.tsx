@@ -1,10 +1,15 @@
 import { Tree } from 'antd'
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree'
+import { EventDataNode } from 'rc-tree/es/interface'
 import { useEffect, useState } from 'react'
 
 const { DirectoryTree } = Tree
 
-export const FolderView = () => {
+interface Props {
+  onDirectorySelect: (node: EventDataNode<DataNode>) => void
+}
+
+export const FolderView = ({ onDirectorySelect }: Props) => {
   const [folders, setFolders] = useState<DataNode[]>()
 
   useEffect(() => {
@@ -12,11 +17,11 @@ export const FolderView = () => {
   }, [])
 
   const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
-    console.log(777, await window.bs.loadDirectory(node.key))
+    onDirectorySelect(node)
   }
 
   return (
-    <div style={{ width: '30%' }}>
+    <div style={{ minWidth: '300px' }}>
       <DirectoryTree defaultExpandAll onSelect={onSelect} treeData={folders} />
     </div>
   )
