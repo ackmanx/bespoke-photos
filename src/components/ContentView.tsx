@@ -8,7 +8,7 @@ export const ContentView = ({ images }: Props) => {
   return (
     <div style={{ flexGrow: 1 }}>
       {images.map((image) => (
-        <Image path={image} />
+        <Image key={image} path={image} />
       ))}
     </div>
   )
