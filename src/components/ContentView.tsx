@@ -1,4 +1,4 @@
-import { Image } from 'antd'
+import { Image } from './Image'
 
 interface Props {
   images: string[]
@@ -7,21 +7,9 @@ interface Props {
 export const ContentView = ({ images }: Props) => {
   return (
     <div style={{ flexGrow: 1 }}>
-      <Image.PreviewGroup>
-        {images.map((image) => (
-          <Image
-            style={{
-              objectFit: 'cover',
-              width: '250px',
-              height: '250px',
-              padding: '8px',
-            }}
-            key={image}
-            src={`bs://${image}`}
-            width={250}
-          />
-        ))}
-      </Image.PreviewGroup>
+      {images.map((image) => (
+        <Image path={image} />
+      ))}
     </div>
   )
 }
