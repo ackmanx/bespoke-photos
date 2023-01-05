@@ -5,14 +5,14 @@ import { Image } from './Image'
 
 interface Props {
   images: iImage[]
-  onClick: (index: number) => void
+  onDoubleClick: (index: number) => void
 }
 
-export const PhotoAlbum = ({ images, onClick }: Props) => {
+export const PhotoAlbum = ({ images, onDoubleClick }: Props) => {
   return (
     <div>
       {images.map((image, index) => (
-        <Image key={image.src} src={image.src} onClick={() => onClick(index)} />
+        <Image key={image.src} src={image.src} onDoubleClick={() => onDoubleClick(index)} />
       ))}
     </div>
   )

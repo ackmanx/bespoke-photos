@@ -21,9 +21,13 @@ export const ContentView = ({ images }: Props) => {
 
   const photos = images.map(({ src, width, height }) => ({ src: imgSrc(src), width, height }))
 
+  const handleViewPhoto = (index: number) => {
+    setIndex(index)
+  }
+
   return (
     <div style={{ flexGrow: 1 }}>
-      <PhotoAlbum images={photos} onClick={(index: number) => setIndex(index)} />
+      <PhotoAlbum images={photos} onDoubleClick={handleViewPhoto} />
 
       <Lightbox
         slides={photos}

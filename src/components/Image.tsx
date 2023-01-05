@@ -3,10 +3,16 @@ import { Button, Tooltip } from 'antd'
 
 interface Props {
   src: string
-  onClick: () => void
+  onDoubleClick: () => void
 }
 
-export const Image = ({ src, onClick }: Props) => {
+export const Image = ({ src, onDoubleClick }: Props) => {
+  const handleSingleClick = (event: any) => {
+    if (event.detail > 1) return
+
+    console.log(777, 'clicked:', event.detail)
+  }
+
   return (
     <div style={{ display: 'inline-block' }}>
       <div style={{ position: 'relative' }}>
@@ -20,7 +26,8 @@ export const Image = ({ src, onClick }: Props) => {
             cursor: 'pointer',
           }}
           src={src}
-          onClick={onClick}
+          onClick={handleSingleClick}
+          onDoubleClick={onDoubleClick}
         />
         <div
           style={{
