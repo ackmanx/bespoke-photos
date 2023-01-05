@@ -6,7 +6,7 @@ import { DataNode } from 'antd/es/tree'
  */
 export interface BespokeApi {
   // `number` type comes from Antd library, but I'm only ever using `string`
-  loadDirectory: (path: string | number) => Promise<string[]>
+  loadDirectory: (path: string | number) => Promise<Image[]>
   getDirectoryTree: (path: string) => Promise<DataNode[]>
 }
 
@@ -14,4 +14,13 @@ declare global {
   interface Window {
     bs: BespokeApi
   }
+}
+
+/*
+ * Models
+ */
+export interface Image {
+  src: string
+  width: number
+  height: number
 }
