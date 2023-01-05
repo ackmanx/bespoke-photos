@@ -1,10 +1,11 @@
 import { EyeOutlined } from '@ant-design/icons'
 
 interface Props {
-  path: string
+  src: string
+  onClick: () => void
 }
 
-export const Image = ({ path }: Props) => {
+export const Image = ({ src, onClick }: Props) => {
   return (
     <div style={{ display: 'inline-block' }}>
       <div style={{ position: 'relative' }}>
@@ -15,7 +16,7 @@ export const Image = ({ path }: Props) => {
             height: '250px',
             margin: '8px',
           }}
-          src={`bs://${path}`}
+          src={src}
         />
         <div
           style={{
@@ -35,7 +36,10 @@ export const Image = ({ path }: Props) => {
               paddingRight: '8px',
             }}
           >
-            <EyeOutlined style={{ fontSize: '28px', color: '#bfc1c5', cursor: 'pointer' }} />
+            <EyeOutlined
+              style={{ fontSize: '28px', color: '#bfc1c5', cursor: 'pointer' }}
+              onClick={onClick}
+            />
           </div>
         </div>
       </div>

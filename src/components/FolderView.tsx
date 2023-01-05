@@ -22,7 +22,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
 
   return (
     <div style={{ minWidth: '300px', height: '100vh', backgroundColor: '#2b2d30' }}>
-      <DirectoryTree defaultExpandAll onSelect={onSelect} treeData={folders} />
+      <DirectoryTree onSelect={onSelect} treeData={folders} />
     </div>
   )
 }
