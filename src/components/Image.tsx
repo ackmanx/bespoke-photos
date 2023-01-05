@@ -1,4 +1,4 @@
-import { CloseCircleOutlined, SearchOutlined } from '@ant-design/icons'
+import { CloseCircleOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 
 interface Props {
@@ -17,8 +17,10 @@ export const Image = ({ src, onClick }: Props) => {
             height: '250px',
             margin: '8px',
             borderRadius: '10px',
+            cursor: 'pointer',
           }}
           src={src}
+          onClick={onClick}
         />
         <div
           style={{
@@ -46,16 +48,7 @@ export const Image = ({ src, onClick }: Props) => {
                 shape='circle'
                 icon={<CloseCircleOutlined />}
                 style={{ color: '#dfe1e4' }}
-                onClick={onClick}
-              />
-            </Tooltip>
-            <Tooltip title='View'>
-              <Button
-                type='ghost'
-                shape='circle'
-                icon={<SearchOutlined />}
-                style={{ color: '#dfe1e4' }}
-                onClick={onClick}
+                onClick={() => console.log(777, 'REJECTED!!!!')}
               />
             </Tooltip>
           </div>
