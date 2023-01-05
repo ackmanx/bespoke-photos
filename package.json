@@ -28,8 +28,10 @@
     "electron-squirrel-startup": "^1.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "react-photo-album": "^2.0.0",
     "react-scripts": "5.0.1",
-    "typescript": "^4.6.4"
+    "typescript": "^4.6.4",
+    "yet-another-react-lightbox": "^2.2.5"
   },
   "eslintConfig": {
     "extends": [
