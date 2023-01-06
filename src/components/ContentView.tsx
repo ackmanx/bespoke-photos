@@ -23,7 +23,15 @@ export const ContentView = ({ images }: Props) => {
   }
 
   const handleMarkPhotoAsRejected = (src: string) => {
-    setRejectedPhotos((prev) => [...prev, src])
+    if (rejectedPhotos.includes(src)) {
+      setRejectedPhotos((prev) => {
+        const newRejectedPhotos = [...prev]
+        newRejectedPhotos.splice(prev.indexOf(src), 1)
+        return newRejectedPhotos
+      })
+    } else {
+      setRejectedPhotos((prev) => [...prev, src])
+    }
   }
 
   return (
