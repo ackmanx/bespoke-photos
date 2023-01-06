@@ -19,12 +19,12 @@ function imgSrc(src: string) {
 }
 
 export const ContentView = ({ images }: Props) => {
-  const [index, setIndex] = useState(-1)
+  const [lightboxPhotoIndex, setLightboxPhotoIndex] = useState(-1)
 
   const photos = images.map(({ src, width, height }) => ({ src: imgSrc(src), width, height }))
 
   const handleViewPhoto = (index: number) => {
-    setIndex(index)
+    setLightboxPhotoIndex(index)
   }
 
   return (
@@ -54,9 +54,9 @@ export const ContentView = ({ images }: Props) => {
 
       <Lightbox
         slides={photos}
-        open={index >= 0}
-        index={index}
-        close={() => setIndex(-1)}
+        open={lightboxPhotoIndex >= 0}
+        index={lightboxPhotoIndex}
+        close={() => setLightboxPhotoIndex(-1)}
         plugins={[Fullscreen, Thumbnails]}
         carousel={{ finite: true }}
         animation={{
