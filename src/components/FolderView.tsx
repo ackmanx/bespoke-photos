@@ -21,7 +21,14 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
   }
 
   return (
-    <div style={{ minWidth: '300px', height: '100vh', backgroundColor: '#2b2d30' }}>
+    <div
+      style={{
+        minWidth: '300px',
+        height: 'calc(100vh - 8px)',
+        paddingTop: '8px',
+        backgroundColor: '#2b2d30',
+      }}
+    >
       <DirectoryTree
         style={{ backgroundColor: '#2b2d30', color: '#dfe1e4' }}
         onSelect={onSelect}
