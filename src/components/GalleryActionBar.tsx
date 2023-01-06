@@ -4,9 +4,10 @@ import React from 'react'
 
 interface Props {
   rejectedPhotos: string[]
+  onShowRejectedViewMode: () => void
 }
 
-export const GalleryActionBar = ({ rejectedPhotos }: Props) => {
+export const GalleryActionBar = ({ rejectedPhotos, onShowRejectedViewMode }: Props) => {
   return (
     <div
       style={{
@@ -19,13 +20,13 @@ export const GalleryActionBar = ({ rejectedPhotos }: Props) => {
       }}
     >
       Rejected: {rejectedPhotos.length}
-      <Tooltip title='Delete all rejected photos'>
+      <Tooltip title='Show rejected photos summary'>
         <Button
           type='ghost'
           shape='circle'
           icon={<DeleteOutlined />}
           style={{ color: '#dfe1e4' }}
-          onClick={() => console.log(777, 'DELETED!!!!')}
+          onClick={() => onShowRejectedViewMode()}
         />
       </Tooltip>
     </div>

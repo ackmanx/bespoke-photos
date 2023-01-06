@@ -11,9 +11,15 @@ interface Props {
   images: iImage[]
   rejectedPhotos: string[]
   onReject: (src: string) => void
+  onShowRejectedViewMode: () => void
 }
 
-export const GalleryViewMode = ({ images, rejectedPhotos, onReject }: Props) => {
+export const GalleryViewMode = ({
+  images,
+  rejectedPhotos,
+  onReject,
+  onShowRejectedViewMode,
+}: Props) => {
   const [lightboxPhotoIndex, setLightboxPhotoIndex] = useState(-1)
 
   const handleViewPhoto = (index: number) => {
@@ -22,7 +28,10 @@ export const GalleryViewMode = ({ images, rejectedPhotos, onReject }: Props) => 
 
   return (
     <div>
-      <GalleryActionBar rejectedPhotos={rejectedPhotos} />
+      <GalleryActionBar
+        rejectedPhotos={rejectedPhotos}
+        onShowRejectedViewMode={onShowRejectedViewMode}
+      />
 
       <div style={{ textAlign: 'center', paddingTop: '8px' }}>
         <PhotoGallery

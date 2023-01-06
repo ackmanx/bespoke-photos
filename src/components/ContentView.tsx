@@ -9,9 +9,11 @@ interface Props {
   images: Image[]
 }
 
+export type ViewMode = 'gallery' | 'rejected'
+
 export const ContentView = ({ images }: Props) => {
   const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
-  // const [viewMode, setViewMode] = useState<'gallery' | 'rejected' | 'lightbox'>('gallery')
+  const [viewMode, setViewMode] = useState<ViewMode>('gallery')
 
   const handleMarkPhotoAsRejected = (src: string) => {
     if (rejectedPhotos.includes(src)) {
@@ -25,13 +27,24 @@ export const ContentView = ({ images }: Props) => {
     }
   }
 
-  return (
-    <div style={{ flexGrow: 1 }}>
-      <GalleryViewMode
-        images={images}
-        rejectedPhotos={rejectedPhotos}
-        onReject={handleMarkPhotoAsRejected}
-      />
-    </div>
-  )
+  const handleShowRejectedViewMode = () => setViewMode('rejected')
+
+  let view
+
+  switch (viewMode) {
+    case 'gallery':
+      view = (
+        <GalleryViewMode
+          images={images}
+          rejectedPhotos={rejectedPhotos}
+          onReject={handleMarkPhotoAsRejected}
+          onShowRejectedViewMode={handleShowRejectedViewMode}
+        />
+      )
+      break
+    case 'rejected':
+      view = <h1>hello world</h1>
+  }
+
+  return <div style={{ flexGrow: 1 }}>{view}</div>
 }
