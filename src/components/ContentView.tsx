@@ -8,7 +8,7 @@ import 'yet-another-react-lightbox/plugins/thumbnails.css'
 import 'yet-another-react-lightbox/styles.css'
 
 import { Image } from '../types'
-import { PhotoAlbum } from './PhotoAlbum'
+import { PhotoGallery } from './PhotoGallery'
 
 interface Props {
   images: Image[]
@@ -58,7 +58,7 @@ export const ContentView = ({ images }: Props) => {
         </Tooltip>
       </div>
       <div style={{ textAlign: 'center', paddingTop: '8px' }}>
-        <PhotoAlbum
+        <PhotoGallery
           images={images}
           rejectedPhotos={rejectedPhotos}
           onDoubleClick={handleViewPhoto}
