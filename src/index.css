@@ -2,4 +2,21 @@ body {
   margin: 0;
   background-color: #1e1f22;
   color: #dfe1e4;
+  font-family: system-ui;
+  font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #dfe1e4;
+  border-radius: 20px;
+  border: transparent;
+}
+::-webkit-scrollbar:horizontal {
+  display: none;
 }

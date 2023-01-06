@@ -10,7 +10,7 @@ interface Props {
 
 export const PhotoAlbum = ({ images, onDoubleClick }: Props) => {
   return (
-    <div>
+    <div style={{ overflow: 'scroll', height: '94vh' }}>
       {images.map((image, index) => (
         <Image key={image.src} src={image.src} onDoubleClick={() => onDoubleClick(index)} />
       ))}

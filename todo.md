@@ -2,6 +2,7 @@
 * Selecting an image will cause:
   * Show info in the sidebar... keywords, date taken
 * Mark an image as rejected
+  * Verify folder contents hasnt changed or make sure rejrect list is unique
 * Provide action to delete rejected images
 
 # Future Feature
