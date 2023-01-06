@@ -18,8 +18,8 @@ async function handleLoadDirectory(event, directoryPath) {
       const dimensions = sizeOf(fullImagePath)
 
       return {
-        bsSrc: `bs://${fullImagePath}`,
-        src: fullImagePath,
+        src: `bs://${fullImagePath}`,
+        pureSrc: fullImagePath,
         width: dimensions.width,
         height: dimensions.height,
       }

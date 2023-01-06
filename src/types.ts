@@ -20,8 +20,10 @@ declare global {
  * Models
  */
 export interface Image {
-  bsSrc: string
+  // This is in the format of bs://<absolute_path_here>
   src: string
+  // This is in the format of a regular absolute path
+  pureSrc: string
   width: number
   height: number
 }

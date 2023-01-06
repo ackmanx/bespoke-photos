@@ -15,9 +15,9 @@ export const PhotoAlbum = ({ images, onDoubleClick, onReject }: Props) => {
       {images.map((image, index) => (
         <Image
           key={image.src}
-          src={image.bsSrc}
+          src={image.src}
           onDoubleClick={() => onDoubleClick(index)}
-          onReject={() => onReject(image.src)}
+          onReject={() => onReject(image.pureSrc)}
         />
       ))}
     </div>
