@@ -3,17 +3,17 @@ import 'yet-another-react-lightbox/plugins/thumbnails.css'
 import 'yet-another-react-lightbox/styles.css'
 
 import { Image } from '../types'
+import { ViewMode } from './App'
 import { GalleryViewMode } from './view-modes/GalleryViewMode'
 
 interface Props {
   images: Image[]
+  viewMode: ViewMode
+  onShowRejectedViewMode: () => void
 }
 
-export type ViewMode = 'gallery' | 'rejected'
-
-export const ContentView = ({ images }: Props) => {
+export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props) => {
   const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
-  const [viewMode, setViewMode] = useState<ViewMode>('gallery')
 
   const handleMarkPhotoAsRejected = (src: string) => {
     if (rejectedPhotos.includes(src)) {
@@ -27,8 +27,6 @@ export const ContentView = ({ images }: Props) => {
     }
   }
 
-  const handleShowRejectedViewMode = () => setViewMode('rejected')
-
   let view
 
   switch (viewMode) {
@@ -38,7 +36,7 @@ export const ContentView = ({ images }: Props) => {
           images={images}
           rejectedPhotos={rejectedPhotos}
           onReject={handleMarkPhotoAsRejected}
-          onShowRejectedViewMode={handleShowRejectedViewMode}
+          onShowRejectedViewMode={onShowRejectedViewMode}
         />
       )
       break
