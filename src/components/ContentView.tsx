@@ -1,3 +1,5 @@
+import { DeleteOutlined } from '@ant-design/icons'
+import { Button, Tooltip } from 'antd'
 import React, { useState } from 'react'
 import { Lightbox } from 'yet-another-react-lightbox'
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
@@ -27,6 +29,27 @@ export const ContentView = ({ images }: Props) => {
 
   return (
     <div style={{ flexGrow: 1 }}>
+      <div
+        style={{
+          backgroundColor: '#2b2d30',
+          height: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '8px',
+        }}
+      >
+        Rejected: n
+        <Tooltip title='Delete all rejected photos'>
+          <Button
+            type='ghost'
+            shape='circle'
+            icon={<DeleteOutlined />}
+            style={{ color: '#dfe1e4' }}
+            onClick={() => console.log(777, 'DELETED!!!!')}
+          />
+        </Tooltip>
+      </div>
       <PhotoAlbum images={photos} onDoubleClick={handleViewPhoto} />
 
       <Lightbox
