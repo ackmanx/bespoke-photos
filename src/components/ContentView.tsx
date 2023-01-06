@@ -49,11 +49,13 @@ export const ContentView = ({ images }: Props) => {
           />
         </Tooltip>
       </div>
-      <PhotoAlbum
-        images={images}
-        onDoubleClick={handleViewPhoto}
-        onReject={handleMarkPhotoAsRejected}
-      />
+      <div style={{ textAlign: 'center', paddingTop: '8px' }}>
+        <PhotoAlbum
+          images={images}
+          onDoubleClick={handleViewPhoto}
+          onReject={handleMarkPhotoAsRejected}
+        />
+      </div>
 
       <Lightbox
         slides={images}

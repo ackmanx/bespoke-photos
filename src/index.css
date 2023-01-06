@@ -20,3 +20,8 @@ body {
 ::-webkit-scrollbar:horizontal {
   display: none;
 }
+
+/* Bring a hammer because I'm too lazy to configure a theme */
+.ant-tree-treenode-selected:before {
+  background-color: #496da4 !important;
+}
