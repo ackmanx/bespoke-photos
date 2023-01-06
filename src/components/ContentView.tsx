@@ -20,11 +20,17 @@ function imgSrc(src: string) {
 
 export const ContentView = ({ images }: Props) => {
   const [lightboxPhotoIndex, setLightboxPhotoIndex] = useState(-1)
+  const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
 
   const photos = images.map(({ src, width, height }) => ({ src: imgSrc(src), width, height }))
 
   const handleViewPhoto = (index: number) => {
     setLightboxPhotoIndex(index)
+  }
+
+  const handleMarkPhotoAsRejected = (src: string) => {
+    setRejectedPhotos((prev) => [...prev, src])
+    console.log(777, rejectedPhotos)
   }
 
   return (
@@ -39,7 +45,7 @@ export const ContentView = ({ images }: Props) => {
           padding: '8px',
         }}
       >
-        Rejected: n
+        Rejected: {rejectedPhotos.length}
         <Tooltip title='Delete all rejected photos'>
           <Button
             type='ghost'
@@ -50,7 +56,11 @@ export const ContentView = ({ images }: Props) => {
           />
         </Tooltip>
       </div>
-      <PhotoAlbum images={photos} onDoubleClick={handleViewPhoto} />
+      <PhotoAlbum
+        images={photos}
+        onDoubleClick={handleViewPhoto}
+        onReject={handleMarkPhotoAsRejected}
+      />
 
       <Lightbox
         slides={photos}

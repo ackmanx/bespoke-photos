@@ -4,9 +4,10 @@ import { Button, Tooltip } from 'antd'
 interface Props {
   src: string
   onDoubleClick: () => void
+  onReject: () => void
 }
 
-export const Image = ({ src, onDoubleClick }: Props) => {
+export const Image = ({ src, onDoubleClick, onReject }: Props) => {
   const handleSingleClick = (event: any) => {
     if (event.detail > 1) return
 
@@ -55,7 +56,7 @@ export const Image = ({ src, onDoubleClick }: Props) => {
                 shape='circle'
                 icon={<CloseCircleOutlined />}
                 style={{ color: '#dfe1e4' }}
-                onClick={() => console.log(777, 'REJECTED!!!!')}
+                onClick={() => onReject()}
               />
             </Tooltip>
           </div>
