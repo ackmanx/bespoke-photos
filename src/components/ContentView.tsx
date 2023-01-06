@@ -5,6 +5,7 @@ import 'yet-another-react-lightbox/styles.css'
 import { Image } from '../types'
 import { ViewMode } from './App'
 import { GalleryViewMode } from './view-modes/GalleryViewMode'
+import { RejectedSummaryViewMode } from './view-modes/RejectedSummaryViewMode'
 
 interface Props {
   images: Image[]
@@ -41,7 +42,7 @@ export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props)
       )
       break
     case 'rejected':
-      view = <h1>hello world</h1>
+      view = <RejectedSummaryViewMode rejectedPhotos={rejectedPhotos} />
   }
 
   return <div style={{ flexGrow: 1 }}>{view}</div>

@@ -2,6 +2,8 @@ import { DeleteOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 import React from 'react'
 
+import { Color } from './theme'
+
 interface Props {
   rejectedPhotos: string[]
   onShowRejectedViewMode: () => void
@@ -11,7 +13,7 @@ export const GalleryActionBar = ({ rejectedPhotos, onShowRejectedViewMode }: Pro
   return (
     <div
       style={{
-        backgroundColor: '#2b2d30',
+        backgroundColor: Color.backgroundLight,
         height: '40px',
         display: 'flex',
         alignItems: 'center',
@@ -25,7 +27,7 @@ export const GalleryActionBar = ({ rejectedPhotos, onShowRejectedViewMode }: Pro
           type='ghost'
           shape='circle'
           icon={<DeleteOutlined />}
-          style={{ color: '#dfe1e4' }}
+          style={{ color: Color.fontColor }}
           onClick={() => onShowRejectedViewMode()}
         />
       </Tooltip>

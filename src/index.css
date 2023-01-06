@@ -1,7 +1,16 @@
+/* JS equivalents in `theme.ts` */
+:root {
+  --background-dark: #1e1f22;
+  --background-light: #2b2d30;
+  --font-color: #dfe1e4;
+  --selected-blue: #496da4;
+  --scrollbar: #535455;
+}
+
 body {
   margin: 0;
-  background-color: #1e1f22;
-  color: #dfe1e4;
+  background-color: var(--background-dark);
+  color: var(--font-color);
   font-family: system-ui;
   font-size: 14px;
 }
@@ -13,7 +22,7 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #535455;
+  background-color: var(--scrollbar);
   border-radius: 20px;
   border: transparent;
 }
@@ -23,5 +32,5 @@ body {
 
 /* Bring a hammer because I'm too lazy to configure a theme */
 .ant-tree-treenode-selected:before {
-  background-color: #496da4 !important;
+  background-color: var(--selected-blue) !important;
 }

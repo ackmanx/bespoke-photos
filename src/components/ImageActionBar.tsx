@@ -1,6 +1,8 @@
 import { CloseCircleOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 
+import { Color } from './theme'
+
 interface Props {
   src: string
   onReject: () => void
@@ -16,7 +18,7 @@ export const ImageActionBar = ({ onReject }: Props) => {
           width: '250px',
           height: '50px',
           margin: '8px',
-          backgroundColor: '#496da4',
+          backgroundColor: Color.selectedBlue,
           borderRadius: '10px 10px 0 0',
         }}
       >
@@ -34,7 +36,7 @@ export const ImageActionBar = ({ onReject }: Props) => {
               type='ghost'
               shape='circle'
               icon={<CloseCircleOutlined />}
-              style={{ color: '#dfe1e4' }}
+              style={{ color: Color.fontColor }}
               onClick={() => onReject()}
             />
           </Tooltip>
