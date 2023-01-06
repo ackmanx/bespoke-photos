@@ -60,6 +60,7 @@ export const ContentView = ({ images }: Props) => {
       <div style={{ textAlign: 'center', paddingTop: '8px' }}>
         <PhotoAlbum
           images={images}
+          rejectedPhotos={rejectedPhotos}
           onDoubleClick={handleViewPhoto}
           onReject={handleMarkPhotoAsRejected}
         />
