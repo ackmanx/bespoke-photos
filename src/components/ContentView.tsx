@@ -14,15 +14,9 @@ interface Props {
   images: Image[]
 }
 
-function imgSrc(src: string) {
-  return `bs://${src}`
-}
-
 export const ContentView = ({ images }: Props) => {
   const [lightboxPhotoIndex, setLightboxPhotoIndex] = useState(-1)
   const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
-
-  const photos = images.map(({ src, width, height }) => ({ src: imgSrc(src), width, height }))
 
   const handleViewPhoto = (index: number) => {
     setLightboxPhotoIndex(index)
@@ -30,7 +24,6 @@ export const ContentView = ({ images }: Props) => {
 
   const handleMarkPhotoAsRejected = (src: string) => {
     setRejectedPhotos((prev) => [...prev, src])
-    console.log(777, rejectedPhotos)
   }
 
   return (
@@ -57,13 +50,13 @@ export const ContentView = ({ images }: Props) => {
         </Tooltip>
       </div>
       <PhotoAlbum
-        images={photos}
+        images={images}
         onDoubleClick={handleViewPhoto}
         onReject={handleMarkPhotoAsRejected}
       />
 
       <Lightbox
-        slides={photos}
+        slides={images}
         open={lightboxPhotoIndex >= 0}
         index={lightboxPhotoIndex}
         close={() => setLightboxPhotoIndex(-1)}

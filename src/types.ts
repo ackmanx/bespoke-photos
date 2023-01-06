@@ -20,6 +20,7 @@ declare global {
  * Models
  */
 export interface Image {
+  bsSrc: string
   src: string
   width: number
   height: number

@@ -4,11 +4,6 @@ const path = require('path')
 const $readdir = promisify(fs.readdir)
 const sizeOf = require('image-size')
 
-/**
- * @param event
- * @param directoryPath
- * @returns {Promise<*>} { path: string, width: number, height: number }
- */
 async function handleLoadDirectory(event, directoryPath) {
   const files = await $readdir(directoryPath, { withFileTypes: true })
 
@@ -23,6 +18,7 @@ async function handleLoadDirectory(event, directoryPath) {
       const dimensions = sizeOf(fullImagePath)
 
       return {
+        bsSrc: `bs://${fullImagePath}`,
         src: fullImagePath,
         width: dimensions.width,
         height: dimensions.height,
