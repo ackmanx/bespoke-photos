@@ -7,9 +7,10 @@ import { Color } from '../theme'
 
 interface Props {
   rejectedPhotos: string[]
+  onUnmarkAsRejected: (src: string) => void
 }
 
-export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
+export const RejectedSummaryViewMode = ({ rejectedPhotos, onUnmarkAsRejected }: Props) => {
   return (
     <div>
       <RejectedSummaryActionBar rejectedPhotos={rejectedPhotos} />
@@ -65,7 +66,7 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
                           shape='circle'
                           icon={<UndoOutlined />}
                           style={{ color: Color.fontColor }}
-                          // onClick={}
+                          onClick={() => onUnmarkAsRejected(src)}
                         />
                       </Tooltip>
                     </div>

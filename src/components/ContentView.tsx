@@ -16,7 +16,7 @@ interface Props {
 export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props) => {
   const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
 
-  const handleMarkPhotoAsRejected = (src: string) => {
+  const handleTogglePhotoAsRejected = (src: string) => {
     if (rejectedPhotos.includes(src)) {
       setRejectedPhotos((prev) => {
         const newRejectedPhotos = [...prev]
@@ -36,13 +36,18 @@ export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props)
         <GalleryViewMode
           images={images}
           rejectedPhotos={rejectedPhotos}
-          onReject={handleMarkPhotoAsRejected}
+          onReject={handleTogglePhotoAsRejected}
           onShowRejectedViewMode={onShowRejectedViewMode}
         />
       )
       break
     case 'rejected':
-      view = <RejectedSummaryViewMode rejectedPhotos={rejectedPhotos} />
+      view = (
+        <RejectedSummaryViewMode
+          rejectedPhotos={rejectedPhotos}
+          onUnmarkAsRejected={handleTogglePhotoAsRejected}
+        />
+      )
   }
 
   return <div style={{ flexGrow: 1 }}>{view}</div>
