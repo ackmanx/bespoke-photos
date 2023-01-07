@@ -11,13 +11,20 @@ interface Props {
 
 export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
   return (
-    <div style={{ paddingTop: '8px' }}>
-      <div style={{ overflow: 'scroll', height: 'calc(100vh - 8px)', textAlign: 'center' }}>
+    <div style={{ padding: '8px 16px 0 16px' }}>
+      <div style={{ overflow: 'scroll', height: 'calc(100vh - 8px)' }}>
         <Title level={3} style={{ color: Color.fontColor }}>
           Summary of Rejected
         </Title>
         {rejectedPhotos.map((src) => (
-          <div style={{ width: '500px', backgroundColor: '' }}>
+          <div
+            style={{
+              display: 'flex',
+              width: '500px',
+              backgroundColor: Color.backgroundLight,
+              borderRadius: '10px',
+            }}
+          >
             <img
               key={src}
               src={`bs://${src}`}
@@ -25,10 +32,13 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
                 objectFit: 'cover',
                 width: '250px',
                 height: '250px',
-                margin: '8px',
                 borderRadius: '10px',
               }}
             />
+            <div style={{ padding: '16px' }}>
+              <Title level={5}>Location:</Title>
+              {src}
+            </div>
           </div>
         ))}
       </div>
