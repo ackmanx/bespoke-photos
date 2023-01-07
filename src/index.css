@@ -33,4 +33,5 @@ body {
 /* Bring a hammer because I'm too lazy to configure a theme */
 .ant-tree-treenode-selected:before {
   background-color: var(--selected-blue) !important;
+  border-radius: 5px;
 }
