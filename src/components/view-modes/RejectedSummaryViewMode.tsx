@@ -1,3 +1,5 @@
+import { UndoOutlined } from '@ant-design/icons'
+import { Button, Tooltip } from 'antd'
 import React from 'react'
 
 import { RejectedSummaryActionBar } from '../action-bars/RejectedSummaryActionBar'
@@ -43,9 +45,30 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
                       borderRadius: '10px',
                     }}
                   />
-                  <div style={{ padding: '16px' }}>
-                    <p>{splitSrc[splitSrc.length - 1]}</p>
-                    <p style={{ fontSize: '12px' }}>{splitSrc.slice(0, -1).join('/')}</p>
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      padding: '16px',
+                      width: '100%',
+                    }}
+                  >
+                    <div>
+                      <p>{splitSrc[splitSrc.length - 1]}</p>
+                      <p style={{ fontSize: '12px' }}>{splitSrc.slice(0, -1).join('/')}</p>
+                    </div>
+                    <div style={{ width: '100%', textAlign: 'right' }}>
+                      <Tooltip title='Unmark as rejected'>
+                        <Button
+                          type='ghost'
+                          shape='circle'
+                          icon={<UndoOutlined />}
+                          style={{ color: Color.fontColor }}
+                          // onClick={}
+                        />
+                      </Tooltip>
+                    </div>
                   </div>
                 </div>
               </div>
