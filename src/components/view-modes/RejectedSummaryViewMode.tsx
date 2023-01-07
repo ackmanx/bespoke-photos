@@ -12,43 +12,46 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
     <div>
       <RejectedSummaryActionBar rejectedPhotos={rejectedPhotos} />
 
-      <div style={{ overflow: 'scroll', height: '94vh', textAlign: 'center', paddingTop: '8px' }}>
-        {rejectedPhotos.map((src) => {
-          const splitSrc = src.split('/')
+      <div style={{ paddingTop: '8px' }}>
+        <div style={{ overflow: 'scroll', height: '94vh', textAlign: 'center' }}>
+          {rejectedPhotos.map((src) => {
+            const splitSrc = src.split('/')
 
-          return (
-            <div
-              style={{
-                display: 'inline-block',
-                width: '500px',
-                backgroundColor: Color.backgroundLight,
-                borderRadius: '10px',
-                textAlign: 'left',
-              }}
-            >
+            return (
               <div
-                key={src}
                 style={{
-                  display: 'flex',
+                  display: 'inline-block',
+                  width: '500px',
+                  backgroundColor: Color.backgroundLight,
+                  borderRadius: '10px',
+                  textAlign: 'left',
+                  margin: '8px',
                 }}
               >
-                <img
-                  src={`bs://${src}`}
+                <div
+                  key={src}
                   style={{
-                    objectFit: 'cover',
-                    width: '250px',
-                    height: '250px',
-                    borderRadius: '10px',
+                    display: 'flex',
                   }}
-                />
-                <div style={{ padding: '16px' }}>
-                  <p>{splitSrc[splitSrc.length - 1]}</p>
-                  <p>{splitSrc.slice(0, -1).join('/')}</p>
+                >
+                  <img
+                    src={`bs://${src}`}
+                    style={{
+                      objectFit: 'cover',
+                      width: '250px',
+                      height: '250px',
+                      borderRadius: '10px',
+                    }}
+                  />
+                  <div style={{ padding: '16px' }}>
+                    <p>{splitSrc[splitSrc.length - 1]}</p>
+                    <p style={{ fontSize: '12px' }}>{splitSrc.slice(0, -1).join('/')}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </div>
   )

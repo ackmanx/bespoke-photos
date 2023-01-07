@@ -1,4 +1,3 @@
-import { DeleteOutlined } from '@ant-design/icons'
 import { Button } from 'antd'
 import React from 'react'
 
@@ -22,11 +21,11 @@ export const RejectedSummaryActionBar = ({ rejectedPhotos }: Props) => {
     >
       Summary of Rejected
       <Button
-        type='ghost'
-        shape='circle'
-        icon={<DeleteOutlined />}
-        style={{ color: Color.fontColor }}
-      />
+        type='primary'
+        style={{ backgroundColor: Color.selectedBlue, color: Color.fontColor }}
+      >
+        Delete Forever
+      </Button>
     </div>
   )
 }
