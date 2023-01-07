@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { RejectedSummaryActionBar } from '../action-bars/RejectedSummaryActionBar'
 import { Color } from '../theme'
 
 interface Props {
@@ -8,11 +9,12 @@ interface Props {
 
 export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
   return (
-    <div style={{ padding: '8px 16px 0 16px' }}>
-      <div style={{ overflow: 'scroll', height: 'calc(100vh - 8px)' }}>
-        <h2 style={{ fontSize: '18px' }}>Summary of Rejected</h2>
+    <div style={{}}>
+      <RejectedSummaryActionBar rejectedPhotos={rejectedPhotos} />
+
+      <div style={{ overflow: 'scroll', height: '94vh' }}>
         {rejectedPhotos.map((src) => {
-          const b = src.split('/')
+          const splitSrc = src.split('/')
 
           return (
             <div
@@ -34,8 +36,8 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos }: Props) => {
                 }}
               />
               <div style={{ padding: '16px' }}>
-                <p>{b[b.length - 1]}</p>
-                <p>{b.slice(0, -1).join('/')}</p>
+                <p>{splitSrc[splitSrc.length - 1]}</p>
+                <p>{splitSrc.slice(0, -1).join('/')}</p>
               </div>
             </div>
           )

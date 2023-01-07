@@ -4,8 +4,8 @@ import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 
 import { Image as iImage } from '../../types'
-import { GalleryActionBar } from '../GalleryActionBar'
 import { PhotoGallery } from '../PhotoGallery'
+import { GalleryActionBar } from '../action-bars/GalleryActionBar'
 
 interface Props {
   images: iImage[]
