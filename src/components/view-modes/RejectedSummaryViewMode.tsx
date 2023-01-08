@@ -8,12 +8,20 @@ import { Color } from '../theme'
 interface Props {
   rejectedPhotos: string[]
   onUnmarkAsRejected: (src: string) => void
+  onClearRejectedPhotosList: () => void
 }
 
-export const RejectedSummaryViewMode = ({ rejectedPhotos, onUnmarkAsRejected }: Props) => {
+export const RejectedSummaryViewMode = ({
+  rejectedPhotos,
+  onUnmarkAsRejected,
+  onClearRejectedPhotosList,
+}: Props) => {
   return (
     <div>
-      <RejectedSummaryActionBar rejectedPhotos={rejectedPhotos} />
+      <RejectedSummaryActionBar
+        rejectedPhotos={rejectedPhotos}
+        onClearRejectedPhotosList={onClearRejectedPhotosList}
+      />
 
       <div style={{ paddingTop: '8px' }}>
         <div style={{ overflow: 'scroll', height: '94vh', textAlign: 'center' }}>
@@ -22,6 +30,7 @@ export const RejectedSummaryViewMode = ({ rejectedPhotos, onUnmarkAsRejected }: 
 
             return (
               <div
+                key={src}
                 style={{
                   display: 'inline-block',
                   width: '500px',

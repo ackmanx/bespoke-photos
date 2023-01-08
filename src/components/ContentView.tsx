@@ -28,6 +28,8 @@ export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props)
     }
   }
 
+  const handleClearRejectedPhotosList = () => setRejectedPhotos([])
+
   let view
 
   switch (viewMode) {
@@ -46,6 +48,7 @@ export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props)
         <RejectedSummaryViewMode
           rejectedPhotos={rejectedPhotos}
           onUnmarkAsRejected={handleTogglePhotoAsRejected}
+          onClearRejectedPhotosList={handleClearRejectedPhotosList}
         />
       )
   }

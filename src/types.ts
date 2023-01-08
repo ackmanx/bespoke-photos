@@ -8,6 +8,7 @@ export interface BespokeApi {
   // `number` type comes from Antd library, but I'm only ever using `string`
   loadDirectory: (path: string | number) => Promise<Image[]>
   getDirectoryTree: (path: string) => Promise<DataNode[]>
+  deleteRejected: (rejectedList: string[]) => Promise<any>
 }
 
 declare global {

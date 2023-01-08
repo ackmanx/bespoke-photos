@@ -5,9 +5,15 @@ import { Color } from '../theme'
 
 interface Props {
   rejectedPhotos: string[]
+  onClearRejectedPhotosList: () => void
 }
 
-export const RejectedSummaryActionBar = ({ rejectedPhotos }: Props) => {
+export const RejectedSummaryActionBar = ({ rejectedPhotos, onClearRejectedPhotosList }: Props) => {
+  const handleDeleteForever = async () => {
+    await window.bs.deleteRejected(rejectedPhotos)
+    onClearRejectedPhotosList()
+  }
+
   return (
     <div
       style={{
@@ -23,6 +29,7 @@ export const RejectedSummaryActionBar = ({ rejectedPhotos }: Props) => {
       <Button
         type='primary'
         style={{ backgroundColor: Color.selectedBlue, color: Color.fontColor }}
+        onClick={handleDeleteForever}
       >
         Delete Forever
       </Button>

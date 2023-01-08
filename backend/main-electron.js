@@ -25,6 +25,7 @@ const createWindow = () => {
 app.whenReady().then(() => {
   ipcMain.handle('get-directory-tree', require('./get-directory-tree').handleGetDirectoryTree)
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
+  ipcMain.handle('delete-rejected', require('./delete-rejected').handleDeleteRejected)
 
   // Electron won't let you access files via `files://` protocol
   // But if you name your own protocol, you can use it like you would `files://`
