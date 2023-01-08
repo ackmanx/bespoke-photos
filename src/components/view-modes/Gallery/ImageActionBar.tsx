@@ -23,6 +23,7 @@ export const ImageActionBar = ({ onReject }: Props) => {
         borderRadius: '0 10px 0px 10px',
         cursor: 'pointer',
       }}
+      onClick={() => onReject()}
     >
       <div
         style={{
@@ -39,7 +40,6 @@ export const ImageActionBar = ({ onReject }: Props) => {
             shape='circle'
             icon={<CloseCircleOutlined />}
             style={{ color: Color.fontColor }}
-            onClick={() => onReject()}
           />
         </Tooltip>
       </div>
