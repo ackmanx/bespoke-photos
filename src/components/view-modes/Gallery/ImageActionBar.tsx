@@ -10,38 +10,38 @@ interface Props {
 
 export const ImageActionBar = ({ onReject }: Props) => {
   return (
-    <div style={{}}>
+    <div
+      className='image-action-bar'
+      style={{
+        position: 'absolute',
+        top: '0px',
+        right: '0',
+        width: '50px',
+        height: '50px',
+        margin: '8px',
+        backgroundColor: `${Color.backgroundLight}99`,
+        borderRadius: '0 10px 0px 10px',
+        cursor: 'pointer',
+      }}
+    >
       <div
         style={{
-          position: 'absolute',
-          top: '0px',
-          right: '0',
-          width: '50px',
-          height: '50px',
-          margin: '8px',
-          backgroundColor: `${Color.backgroundLight}99`,
-          borderRadius: '0 10px 0px 10px',
+          display: 'flex',
+          justifyContent: 'right',
+          alignItems: 'center',
+          height: '100%',
+          paddingRight: '8px',
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'right',
-            alignItems: 'center',
-            height: '100%',
-            paddingRight: '8px',
-          }}
-        >
-          <Tooltip title='Reject'>
-            <Button
-              type='ghost'
-              shape='circle'
-              icon={<CloseCircleOutlined />}
-              style={{ color: Color.fontColor }}
-              onClick={() => onReject()}
-            />
-          </Tooltip>
-        </div>
+        <Tooltip title='Reject'>
+          <Button
+            type='ghost'
+            shape='circle'
+            icon={<CloseCircleOutlined />}
+            style={{ color: Color.fontColor }}
+            onClick={() => onReject()}
+          />
+        </Tooltip>
       </div>
     </div>
   )

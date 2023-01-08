@@ -15,6 +15,11 @@ body {
   font-size: 14px;
 }
 
+/* Can't do hover with inline style prop, and specificity requires this to be important */
+.image-action-bar:hover {
+  background-color: var(--background-light) !important;
+}
+
 ::-webkit-scrollbar {
   width: 9px;
 }
@@ -34,4 +39,8 @@ body {
 .ant-tree-treenode-selected:before {
   background-color: var(--selected-blue) !important;
   border-radius: 5px;
+}
+
+.yarl__thumbnails_thumbnail_active {
+  border: 3px solid var(--selected-blue);
 }

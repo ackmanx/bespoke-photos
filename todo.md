@@ -11,3 +11,4 @@
 * Multiselect of images
 * Resize thumbnails
 * Video file support
+* Add/edit directory trees for the folder view and persist

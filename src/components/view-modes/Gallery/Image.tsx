@@ -24,7 +24,6 @@ export const Image = ({ src, isRejected, onDoubleClick, onReject }: Props) => {
             height: '250px',
             margin: '8px',
             borderRadius: '10px',
-            cursor: 'pointer',
             boxSizing: 'border-box',
             ...(isRejected && { filter: 'grayscale() brightness(.5)' }),
           }}

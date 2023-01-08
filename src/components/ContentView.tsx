@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import 'yet-another-react-lightbox/plugins/thumbnails.css'
-import 'yet-another-react-lightbox/styles.css'
 
 import { Image } from '../types'
 import { ViewMode } from './App'
