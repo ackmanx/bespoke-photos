@@ -14,12 +14,13 @@ export const ImageActionBar = ({ onReject }: Props) => {
       <div
         style={{
           position: 'absolute',
-          top: 0,
-          width: '250px',
+          top: '0px',
+          right: '0',
+          width: '50px',
           height: '50px',
           margin: '8px',
-          backgroundColor: Color.selectedBlue,
-          borderRadius: '10px 10px 0 0',
+          backgroundColor: Color.backgroundLight,
+          borderRadius: '0 10px 0px 10px',
         }}
       >
         <div
