@@ -4,8 +4,8 @@ import 'yet-another-react-lightbox/styles.css'
 
 import { Image } from '../types'
 import { ViewMode } from './App'
-import { GalleryViewMode } from './view-modes/GalleryViewMode'
-import { RejectedSummaryViewMode } from './view-modes/RejectedSummaryViewMode'
+import { GalleryViewMode } from './view-modes/Gallery/GalleryViewMode'
+import { RejectedSummaryViewMode } from './view-modes/RejectedSummary/RejectedSummaryViewMode'
 
 interface Props {
   images: Image[]

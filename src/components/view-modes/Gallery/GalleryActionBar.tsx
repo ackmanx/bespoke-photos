@@ -2,7 +2,7 @@ import { DeleteOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 import React from 'react'
 
-import { Color } from '../theme'
+import { Color } from '../../theme'
 
 interface Props {
   rejectedPhotos: string[]

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Image as iImage } from '../types'
+import { Image as iImage } from '../../../types'
 import { Image } from './Image'
 
 interface Props {

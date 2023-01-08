@@ -2,7 +2,7 @@ import { ExclamationCircleTwoTone } from '@ant-design/icons'
 import { Button, Modal } from 'antd'
 import React from 'react'
 
-import { Color } from '../theme'
+import { Color } from '../../theme'
 
 interface Props {
   rejectedPhotos: string[]
