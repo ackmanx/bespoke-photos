@@ -19,7 +19,7 @@ export const ImageActionBar = ({ onReject }: Props) => {
           width: '50px',
           height: '50px',
           margin: '8px',
-          backgroundColor: Color.backgroundLight,
+          backgroundColor: `${Color.backgroundLight}99`,
           borderRadius: '0 10px 0px 10px',
         }}
       >
