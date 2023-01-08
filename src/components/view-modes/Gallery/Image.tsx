@@ -31,6 +31,7 @@ export const Image = ({ src, isRejected, onDoubleClick, onReject }: Props) => {
           onClick={handleSingleClick}
           onDoubleClick={onDoubleClick}
         />
+
         {isRejected && (
           <div
             style={{
