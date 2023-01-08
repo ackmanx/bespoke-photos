@@ -12,3 +12,8 @@
 * Resize thumbnails
 * Video file support
 * Add/edit directory trees for the folder view and persist
+
+# Performance
+* Need to generate thumbnails and cache them
+* Need loading spinner because large lists and network volumes can delay
+* Need to lazy load
