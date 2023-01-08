@@ -23,8 +23,8 @@ export const RejectedSummaryActionBar = ({
   const confirm = () => {
     Modal.confirm({
       title: 'Are you sure you want to delete?',
-      icon: <ExclamationCircleTwoTone twoToneColor='#eb2f96' />,
       content: 'You cannot undo this action!',
+      icon: <ExclamationCircleTwoTone twoToneColor='#eb2f96' />,
       okText: 'Delete',
       cancelText: 'Cancel',
       onOk: handleDeleteForever,
