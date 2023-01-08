@@ -14,6 +14,8 @@ export const App = () => {
 
   const handleShowRejectedViewMode = () => setViewMode('rejected')
 
+  const handleShowGalleryViewMode = () => setViewMode('gallery')
+
   const handleDirectorySelect = async (directoryNode: any) => {
     setViewMode('gallery')
     setImages(await window.bs.loadDirectory(directoryNode.key))
@@ -25,6 +27,7 @@ export const App = () => {
       <ContentView
         images={images}
         viewMode={viewMode}
+        onShowGalleryViewMode={handleShowGalleryViewMode}
         onShowRejectedViewMode={handleShowRejectedViewMode}
       />
       <SidebarView />

@@ -17,11 +17,10 @@ export const GalleryActionBar = ({ rejectedPhotos, onShowRejectedViewMode }: Pro
         height: '40px',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'right',
         padding: '8px',
       }}
     >
-      Rejected: {rejectedPhotos.length}
       <Tooltip title='Show rejected photos summary'>
         <Button
           type='ghost'
@@ -29,7 +28,9 @@ export const GalleryActionBar = ({ rejectedPhotos, onShowRejectedViewMode }: Pro
           icon={<DeleteOutlined />}
           style={{ color: Color.fontColor }}
           onClick={() => onShowRejectedViewMode()}
-        />
+        >
+          <span>{rejectedPhotos.length}</span>
+        </Button>
       </Tooltip>
     </div>
   )

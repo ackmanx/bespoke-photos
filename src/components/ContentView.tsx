@@ -11,9 +11,15 @@ interface Props {
   images: Image[]
   viewMode: ViewMode
   onShowRejectedViewMode: () => void
+  onShowGalleryViewMode: () => void
 }
 
-export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props) => {
+export const ContentView = ({
+  images,
+  viewMode,
+  onShowRejectedViewMode,
+  onShowGalleryViewMode,
+}: Props) => {
   const [rejectedPhotos, setRejectedPhotos] = useState<string[]>([])
 
   const handleTogglePhotoAsRejected = (src: string) => {
@@ -49,6 +55,7 @@ export const ContentView = ({ images, viewMode, onShowRejectedViewMode }: Props)
           rejectedPhotos={rejectedPhotos}
           onUnmarkAsRejected={handleTogglePhotoAsRejected}
           onClearRejectedPhotosList={handleClearRejectedPhotosList}
+          onShowGalleryViewMode={onShowGalleryViewMode}
         />
       )
   }

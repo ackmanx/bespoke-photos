@@ -1,4 +1,4 @@
-import { ExclamationCircleTwoTone } from '@ant-design/icons'
+import { ArrowLeftOutlined, ExclamationCircleTwoTone } from '@ant-design/icons'
 import { Button, Modal } from 'antd'
 import React from 'react'
 
@@ -7,9 +7,14 @@ import { Color } from '../../theme'
 interface Props {
   rejectedPhotos: string[]
   onClearRejectedPhotosList: () => void
+  onShowGalleryViewMode: () => void
 }
 
-export const RejectedSummaryActionBar = ({ rejectedPhotos, onClearRejectedPhotosList }: Props) => {
+export const RejectedSummaryActionBar = ({
+  rejectedPhotos,
+  onClearRejectedPhotosList,
+  onShowGalleryViewMode,
+}: Props) => {
   const handleDeleteForever = async () => {
     await window.bs.deleteRejected(rejectedPhotos)
     onClearRejectedPhotosList()
@@ -37,7 +42,12 @@ export const RejectedSummaryActionBar = ({ rejectedPhotos, onClearRejectedPhotos
         padding: '8px',
       }}
     >
-      Summary of Rejected
+      <Button
+        type='text'
+        style={{ color: Color.fontColor }}
+        icon={<ArrowLeftOutlined />}
+        onClick={onShowGalleryViewMode}
+      />
       <Button
         type='primary'
         disabled={rejectedPhotos.length === 0}

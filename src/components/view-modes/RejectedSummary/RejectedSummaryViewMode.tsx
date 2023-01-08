@@ -9,18 +9,21 @@ interface Props {
   rejectedPhotos: string[]
   onUnmarkAsRejected: (src: string) => void
   onClearRejectedPhotosList: () => void
+  onShowGalleryViewMode: () => void
 }
 
 export const RejectedSummaryViewMode = ({
   rejectedPhotos,
   onUnmarkAsRejected,
   onClearRejectedPhotosList,
+  onShowGalleryViewMode,
 }: Props) => {
   return (
     <div>
       <RejectedSummaryActionBar
         rejectedPhotos={rejectedPhotos}
         onClearRejectedPhotosList={onClearRejectedPhotosList}
+        onShowGalleryViewMode={onShowGalleryViewMode}
       />
 
       <div style={{ paddingTop: '8px' }}>
