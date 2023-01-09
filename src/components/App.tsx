@@ -30,7 +30,13 @@ export const App = () => {
   }
 
   return (
-    <main style={{ display: 'flex', ...(isLoading && { filter: 'grayscale()' }) }}>
+    <main
+      style={{
+        display: 'flex',
+        transition: 'all 1s linear',
+        ...(isLoading && { filter: 'grayscale()' }),
+      }}
+    >
       <FolderView onDirectorySelect={handleDirectorySelect} />
       <ContentView
         images={images}
