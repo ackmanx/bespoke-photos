@@ -30,21 +30,38 @@ export const App = () => {
   }
 
   return (
-    <main
-      style={{
-        display: 'flex',
-        transition: 'all 1s linear',
-        ...(isLoading && { filter: 'grayscale()' }),
-      }}
-    >
-      <FolderView onDirectorySelect={handleDirectorySelect} />
-      <ContentView
-        images={images}
-        viewMode={viewMode}
-        onShowGalleryViewMode={handleShowGalleryViewMode}
-        onShowRejectedViewMode={handleShowRejectedViewMode}
-      />
-      <SidebarView />
-    </main>
+    <>
+      {isLoading && (
+        <div
+          style={{
+            writingMode: 'vertical-rl',
+            textOrientation: 'upright',
+            fontSize: '38px',
+            padding: '16px 4px',
+            position: 'absolute',
+            zIndex: -1,
+          }}
+        >
+          loading
+        </div>
+      )}
+
+      <main
+        style={{
+          display: 'flex',
+          transition: 'all .5s linear',
+          ...(isLoading && { filter: 'grayscale()', translate: '55px' }),
+        }}
+      >
+        <FolderView onDirectorySelect={handleDirectorySelect} />
+        <ContentView
+          images={images}
+          viewMode={viewMode}
+          onShowGalleryViewMode={handleShowGalleryViewMode}
+          onShowRejectedViewMode={handleShowRejectedViewMode}
+        />
+        <SidebarView />
+      </main>
+    </>
   )
 }
