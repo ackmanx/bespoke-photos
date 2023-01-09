@@ -9,6 +9,7 @@ import { SidebarView } from './SidebarView'
 export type ViewMode = 'gallery' | 'rejected'
 
 export const App = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const [images, setImages] = useState<Image[]>([])
   const [viewMode, setViewMode] = useState<ViewMode>('gallery')
 
@@ -18,11 +19,18 @@ export const App = () => {
 
   const handleDirectorySelect = async (directoryNode: any) => {
     setViewMode('gallery')
-    setImages(await window.bs.loadDirectory(directoryNode.key))
+    const timeout = setTimeout(() => setIsLoading(true), 200)
+
+    const images = await window.bs.loadDirectory(directoryNode.key)
+
+    clearTimeout(timeout)
+
+    setIsLoading(false)
+    setImages(images)
   }
 
   return (
-    <main style={{ display: 'flex' }}>
+    <main style={{ display: 'flex', ...(isLoading && { filter: 'grayscale()' }) }}>
       <FolderView onDirectorySelect={handleDirectorySelect} />
       <ContentView
         images={images}
