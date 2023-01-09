@@ -16,7 +16,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
 
   useEffect(() => {
     window.bs
-      .getDirectoryTree('/Volumes/Memories/Processing/3 - Photos - To Keyword/2018/apple-orchard')
+      .getDirectoryTree('/Volumes/Memories/Processing/3 - Photos - To Keyword/2018')
       .then((tree) => setFolders(tree))
     // window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep').then((tree) => setFolders(tree))
   }, [])
@@ -28,6 +28,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
   return (
     <div
       style={{
+        minWidth: '300px',
         width: '300px',
         height: 'calc(100vh - 8px)',
         paddingTop: '8px',
