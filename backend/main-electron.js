@@ -60,5 +60,8 @@ app.on('window-all-closed', () => {
 
 function verifyCacheFolderExists() {
   const appStorage = `${app.getPath('home')}/.bespoke`
-  console.log(777, appStorage)
+
+  if (!fs.existsSync(appStorage)) {
+    fs.mkdirSync(appStorage)
+  }
 }
