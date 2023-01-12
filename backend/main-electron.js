@@ -1,8 +1,11 @@
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const path = require('path')
+const fs = require('fs')
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
+    title: 'Bespoke Photos',
+    backgroundColor: '#1e1f22',
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
     },
@@ -18,6 +21,8 @@ const createWindow = () => {
     mainWindow.webContents.openDevTools()
   }
 }
+
+verifyCacheFolderExists()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -52,3 +57,8 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function verifyCacheFolderExists() {
+  const appStorage = `${app.getPath('home')}/.bespoke`
+  console.log(777, appStorage)
+}
