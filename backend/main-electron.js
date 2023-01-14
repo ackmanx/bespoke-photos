@@ -1,6 +1,7 @@
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
 const path = require('path')
 const fs = require('fs')
+const { STORAGE_PATH } = require('./utils')
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow({
@@ -55,13 +56,8 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-
 function verifyCacheFolderExists() {
-  const appStorage = `${app.getPath('home')}/.bespoke`
-
-  if (!fs.existsSync(appStorage)) {
-    fs.mkdirSync(appStorage)
+  if (!fs.existsSync(STORAGE_PATH)) {
+    fs.mkdirSync(STORAGE_PATH)
   }
 }
