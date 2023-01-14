@@ -11,6 +11,7 @@
 * Resize thumbnails
 * Video file support
 * Add/edit directory trees for the folder view and persist
+* Be aware that if a photo is deleted the thumbnail stays. If a new file is put in the same spot with the same name, the thumbnail won't match
 
 # Performance
 * Need to lazy load
