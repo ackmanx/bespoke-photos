@@ -25,6 +25,8 @@ export interface Image {
   src: string
   // This is in the format of a regular absolute path
   pureSrc: string
+  thumbSrc: string
+  thumbPureSrc: string
   width: number
   height: number
 }

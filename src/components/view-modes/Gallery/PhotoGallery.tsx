@@ -16,7 +16,7 @@ export const PhotoGallery = ({ images, rejectedPhotos, onDoubleClick, onReject }
       {images.map((image, index) => (
         <Image
           key={image.src}
-          src={image.src}
+          src={image.thumbSrc}
           isRejected={rejectedPhotos.includes(image.pureSrc)}
           onDoubleClick={() => onDoubleClick(index)}
           onReject={() => onReject(image.pureSrc)}
