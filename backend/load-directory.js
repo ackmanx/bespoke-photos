@@ -7,6 +7,7 @@ const sharp = require('sharp')
 const { STORAGE_PATH } = require('./utils')
 
 async function handleLoadDirectory(event, directoryPath) {
+  // Returns `FileSystemEntry` not `string[]`
   const files = await $readdir(directoryPath, { withFileTypes: true })
 
   const fsEntryImages = files.filter((file) => {
@@ -15,8 +16,9 @@ async function handleLoadDirectory(event, directoryPath) {
     return file.isFile() && ['jpg', 'jpeg'].includes(extension)
   })
 
-  //todo majerus: make this a loop that allows await
-  const images = fsEntryImages.map((image) => {
+  const imageObjectsToReturn = []
+
+  for (const image of fsEntryImages) {
     const fullImagePath = path.resolve(directoryPath, image.name)
     const thumbnailPath = `${STORAGE_PATH}/${fullImagePath.replaceAll('/', '|')}`
 
@@ -26,28 +28,20 @@ async function handleLoadDirectory(event, directoryPath) {
       // If a thumbnail doesn't exist in app storage, create one. The UI will point to this in the photo gallery
       // This is async so it'll return before errors are processed but that's fine in this case
       // Also, thumbnail path includes directory, so images that are moved will get new thumbnails
-      sharp(fullImagePath)
-        .resize(250, 250)
-        .withMetadata()
-        .toFile(`${thumbnailPath}`, function (err) {
-          if (err) {
-            console.error(777, 'error with:', image.name)
-            console.error(err)
-          }
-        })
+      await sharp(fullImagePath).resize(250, 250).withMetadata().toFile(`${thumbnailPath}`)
     }
 
-    return {
+    imageObjectsToReturn.push({
       src: `bs://${fullImagePath}`,
       pureSrc: fullImagePath,
       thumbSrc: `bs://${thumbnailPath}`,
       thumbPureSrc: `${thumbnailPath}`,
       width: dimensions.width,
       height: dimensions.height,
-    }
-  })
+    })
+  }
 
-  return images
+  return imageObjectsToReturn
 }
 
 module.exports = {
