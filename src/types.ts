@@ -9,6 +9,9 @@ export interface BespokeApi {
   loadDirectory: (path: string | number) => Promise<Image[]>
   getDirectoryTree: (path: string) => Promise<DataNode[]>
   deleteRejected: (rejectedList: string[]) => Promise<any>
+  onLoadingProgress: (
+    callback: (event: any, progress: { current: number; total: number }) => void
+  ) => any
 }
 
 declare global {

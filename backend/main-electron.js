@@ -1,27 +1,7 @@
 const { app, BrowserWindow, ipcMain, protocol } = require('electron')
-const path = require('path')
 const fs = require('fs')
 const { STORAGE_PATH } = require('./utils')
-
-const createWindow = () => {
-  const mainWindow = new BrowserWindow({
-    title: 'Bespoke Photos',
-    backgroundColor: '#1e1f22',
-    webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-    },
-  })
-
-  // This switch allows us to use a dev server or a production build
-  const startUrl = process.env.WEB_URL || `file://${path.join(__dirname, '../build/index.html')}}`
-
-  mainWindow.maximize()
-  mainWindow.loadURL(startUrl)
-
-  if (!app.isPackaged) {
-    mainWindow.webContents.openDevTools()
-  }
-}
+const Window = require('./electron-browser-window')
 
 verifyCacheFolderExists()
 
@@ -40,12 +20,12 @@ app.whenReady().then(() => {
     callback({ path: request.url.substring(5) })
   })
 
-  createWindow()
+  Window.create()
 
   app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) createWindow()
+    if (BrowserWindow.getAllWindows().length === 0) Window.create()
   })
 })
 

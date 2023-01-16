@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Image } from '../types'
 import './App.css'
@@ -8,10 +8,22 @@ import { SidebarView } from './SidebarView'
 
 export type ViewMode = 'gallery' | 'rejected'
 
+interface LoadingProgress {
+  current: number
+  total: number
+}
+
 export const App = () => {
   const [isLoading, setIsLoading] = useState(false)
+  const [loadingProgress, setLoadingProgress] = useState<LoadingProgress>()
   const [images, setImages] = useState<Image[]>([])
   const [viewMode, setViewMode] = useState<ViewMode>('gallery')
+
+  useEffect(() => {
+    window.bs.onLoadingProgress((_event, progress) => {
+      setLoadingProgress(progress)
+    })
+  }, [])
 
   const handleShowRejectedViewMode = () => setViewMode('rejected')
 
@@ -42,7 +54,7 @@ export const App = () => {
             zIndex: -1,
           }}
         >
-          loading
+          loading {loadingProgress?.current} / {loadingProgress?.total}
         </div>
       )}
 
