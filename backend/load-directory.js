@@ -47,7 +47,7 @@ async function handleLoadDirectory(event, directoryPath) {
           .resize(250, 250)
           .withMetadata()
           .jpeg({ quality: 90 })
-          .toFile(`${thumbnailPath}`)
+          .toFile(thumbnailPath)
       } catch (error) {
         console.error('***load-directory: error found with', fullImagePath)
         console.error(error)
