@@ -40,7 +40,14 @@ async function handleLoadDirectory(event, directoryPath) {
       // If a thumbnail doesn't exist in app storage, create one. The UI will point to this in the photo gallery
       // This is async so it'll return before errors are processed but that's fine in this case
       // Also, thumbnail path includes directory, so images that are moved will get new thumbnails
-      await sharp(fullImagePath).resize(250, 250).withMetadata().toFile(`${thumbnailPath}`)
+      console.log(`***Generating thumbnail: "${thumbnailPath}"`)
+
+      try {
+        await sharp(fullImagePath).resize(250, 250).withMetadata().toFile(`${thumbnailPath}`)
+      } catch (error) {
+        console.error('***load-directory: error found with', fullImagePath)
+        console.error(error)
+      }
     }
 
     imageObjectsToReturn.push({
