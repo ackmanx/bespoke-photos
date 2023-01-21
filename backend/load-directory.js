@@ -43,7 +43,11 @@ async function handleLoadDirectory(event, directoryPath) {
       console.log(`***Generating thumbnail: "${thumbnailPath}"`)
 
       try {
-        await sharp(fullImagePath).resize(250, 250).withMetadata().toFile(`${thumbnailPath}`)
+        await sharp(fullImagePath)
+          .resize(250, 250)
+          .withMetadata()
+          .jpeg({ quality: 90 })
+          .toFile(`${thumbnailPath}`)
       } catch (error) {
         console.error('***load-directory: error found with', fullImagePath)
         console.error(error)
