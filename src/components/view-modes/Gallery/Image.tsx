@@ -28,6 +28,7 @@ export const Image = ({ src, isRejected, onDoubleClick, onReject }: Props) => {
             ...(isRejected && { filter: 'grayscale() brightness(.5)' }),
           }}
           src={src}
+          alt=''
           onClick={handleSingleClick}
           onDoubleClick={onDoubleClick}
         />

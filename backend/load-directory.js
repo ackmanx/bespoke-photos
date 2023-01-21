@@ -2,7 +2,6 @@ const promisify = require('util').promisify
 const fs = require('fs')
 const path = require('path')
 const $readdir = promisify(fs.readdir)
-const sizeOf = require('image-size')
 const sharp = require('sharp')
 const { STORAGE_PATH } = require('./utils')
 const Window = require('./electron-browser-window')
@@ -26,8 +25,6 @@ async function handleLoadDirectory(event, directoryPath) {
 
     const fullImagePath = path.resolve(directoryPath, image.name)
     const thumbnailPath = `${STORAGE_PATH}/${fullImagePath.replaceAll('/', '|')}`
-
-    const dimensions = sizeOf(fullImagePath)
 
     const window = Window.get()
 
@@ -61,8 +58,6 @@ async function handleLoadDirectory(event, directoryPath) {
       pureSrc: fullImagePath,
       thumbSrc: `bs://${thumbnailPath}`,
       thumbPureSrc: `${thumbnailPath}`,
-      width: dimensions.width,
-      height: dimensions.height,
       title: image.name,
     })
   }

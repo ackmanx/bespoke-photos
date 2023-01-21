@@ -57,6 +57,7 @@ export const RejectedSummaryViewMode = ({
                       height: '250px',
                       borderRadius: '10px',
                     }}
+                    alt=''
                   />
                   <div
                     style={{

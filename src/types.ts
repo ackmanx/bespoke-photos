@@ -30,6 +30,4 @@ export interface Image {
   pureSrc: string
   thumbSrc: string
   thumbPureSrc: string
-  width: number
-  height: number
 }
