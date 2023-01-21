@@ -63,6 +63,7 @@ async function handleLoadDirectory(event, directoryPath) {
       thumbPureSrc: `${thumbnailPath}`,
       width: dimensions.width,
       height: dimensions.height,
+      title: image.name,
     })
   }
 

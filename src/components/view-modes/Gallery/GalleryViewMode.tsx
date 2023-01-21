@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Lightbox } from 'yet-another-react-lightbox'
+import Captions from 'yet-another-react-lightbox/plugins/captions'
+import 'yet-another-react-lightbox/plugins/captions.css'
 import Fullscreen from 'yet-another-react-lightbox/plugins/fullscreen'
 import Thumbnails from 'yet-another-react-lightbox/plugins/thumbnails'
 import 'yet-another-react-lightbox/plugins/thumbnails.css'
@@ -49,7 +51,7 @@ export const GalleryViewMode = ({
         open={lightboxPhotoIndex >= 0}
         index={lightboxPhotoIndex}
         close={() => setLightboxPhotoIndex(-1)}
-        plugins={[Fullscreen, Thumbnails]}
+        plugins={[Captions, Fullscreen, Thumbnails]}
         carousel={{ finite: true }}
         animation={{
           swipe: 200,
