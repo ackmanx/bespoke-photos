@@ -43,7 +43,9 @@ async function handleLoadDirectory(event, directoryPath) {
       console.log(`***Generating thumbnail: "${thumbnailPath}"`)
 
       try {
-        await sharp(fullImagePath)
+        // IMPORTANT: Using failOn here says to not fail for warnings (default)
+        // This allows creation of thumbnails from Samsung phones because they often produce a visible but corrupted image
+        await sharp(fullImagePath, { failOn: 'error' })
           .resize(250, 250)
           .withMetadata()
           .jpeg({ quality: 90 })
