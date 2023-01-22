@@ -1,7 +1,7 @@
 import { CloseCircleOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 
-import { Color } from '../../theme'
+import { Color } from '../../../theme'
 
 interface Props {
   src: string

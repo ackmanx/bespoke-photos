@@ -2,7 +2,7 @@ import { UndoOutlined } from '@ant-design/icons'
 import { Button, Tooltip } from 'antd'
 import React from 'react'
 
-import { Color } from '../../theme'
+import { Color } from '../../../theme'
 import { RejectedSummaryActionBar } from './RejectedSummaryActionBar'
 
 interface Props {

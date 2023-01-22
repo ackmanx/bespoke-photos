@@ -3,7 +3,7 @@ import type { DataNode, DirectoryTreeProps } from 'antd/es/tree'
 import { EventDataNode } from 'rc-tree/es/interface'
 import { useEffect, useState } from 'react'
 
-import { Color } from './theme'
+import { Color } from '../theme'
 
 const { DirectoryTree } = Tree
 
