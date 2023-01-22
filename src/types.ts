@@ -5,6 +5,8 @@ import { DataNode } from 'antd/es/tree'
  * The API is declared in `backend/preload.js`
  */
 export interface BespokeApi {
+  get: (key: string) => any
+  set: (key: string, value: any) => void
   // `number` type comes from Antd library, but I'm only ever using `string`
   loadDirectory: (path: string | number) => Promise<Image[]>
   getDirectoryTree: (path: string) => Promise<DataNode[]>

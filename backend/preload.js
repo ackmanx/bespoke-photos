@@ -2,6 +2,16 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('bs', {
   /*
+   * Storage
+   */
+  get(key) {
+    return ipcRenderer.sendSync('electron-store-get', key)
+  },
+  set(property, val) {
+    ipcRenderer.send('electron-store-set', property, val)
+  },
+
+  /*
    * Render to Main
    */
   /**
