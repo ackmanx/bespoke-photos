@@ -5,6 +5,7 @@ const $readdir = promisify(fs.readdir)
 const sharp = require('sharp')
 const { STORAGE_PATH } = require('./utils')
 const Window = require('./electron-browser-window')
+const debug = require('debug')('load-directory.js')
 
 async function handleLoadDirectory(event, directoryPath) {
   /** @type {Dirent[]} */
@@ -24,7 +25,8 @@ async function handleLoadDirectory(event, directoryPath) {
     const image = fsEntryImages[imageIndexNumber]
 
     const fullImagePath = path.resolve(directoryPath, image.name)
-    const thumbnailPath = `${STORAGE_PATH}/${fullImagePath.replaceAll('/', '|')}`
+    const thumbnailName = fullImagePath.substring(1).replaceAll('/', '--')
+    const thumbnailPath = `${STORAGE_PATH}/${thumbnailName}`
 
     const window = Window.get()
 
@@ -37,19 +39,20 @@ async function handleLoadDirectory(event, directoryPath) {
       // If a thumbnail doesn't exist in app storage, create one. The UI will point to this in the photo gallery
       // This is async so it'll return before errors are processed but that's fine in this case
       // Also, thumbnail path includes directory, so images that are moved will get new thumbnails
-      console.log(`***Generating thumbnail: "${thumbnailPath}"`)
+      debug(`Generating thumbnail: ${thumbnailName}`)
 
       try {
         // IMPORTANT: Using failOn here says to not fail for warnings (default)
         // This allows creation of thumbnails from Samsung phones because they often produce a visible but corrupted image
-        await sharp(fullImagePath, { failOn: 'error' })
+        await sharp(fullImagePath)
+          // await sharp(fullImagePath, { failOn: 'error' })
           .resize(250, 250)
           .withMetadata()
           .jpeg({ quality: 90 })
           .toFile(thumbnailPath)
       } catch (error) {
-        console.error('***load-directory: error found with', fullImagePath)
-        console.error(error)
+        debug(`Error: ${thumbnailName}`)
+        debug(error)
       }
     }
 
