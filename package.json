@@ -2,7 +2,7 @@
   "name": "bespoke-photos",
   "scripts": {
     "start": "TSC_COMPILE_ON_ERROR=true BROWSER=none react-scripts start",
-    "start:electron": "WEB_URL=http://localhost:3000 electron-forge start",
+    "start:electron": "DEBUG=bs:* WEB_URL=http://localhost:3000 electron-forge start",
     "build": "react-scripts build",
     "go": "yarn build; yarn make",
     "make": "electron-forge make",

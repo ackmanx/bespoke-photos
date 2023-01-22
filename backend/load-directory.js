@@ -5,7 +5,7 @@ const $readdir = promisify(fs.readdir)
 const sharp = require('sharp')
 const { STORAGE_PATH } = require('./utils')
 const Window = require('./electron-browser-window')
-const debug = require('debug')('load-directory.js')
+const debug = require('debug')('bs:load-directory.js')
 
 async function handleLoadDirectory(event, directoryPath) {
   /** @type {Dirent[]} */

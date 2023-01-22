@@ -16,9 +16,8 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
 
   useEffect(() => {
     window.bs
-      .getDirectoryTree('/Volumes/Memories/Processing/3 - Photos - To Keyword/2018/apple-orchard')
+      .getDirectoryTree('/Users/varr/Desktop/From Uploaded Root')
       .then((tree) => setFolders(tree))
-    // window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep').then((tree) => setFolders(tree))
   }, [])
 
   const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
