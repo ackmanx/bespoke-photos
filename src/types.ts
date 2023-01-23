@@ -7,7 +7,7 @@ import { DataNode } from 'antd/es/tree'
 export interface BespokeApi {
   get: (key: string) => any
   set: (key: string, value: any) => void
-  addRootFolder: () => void
+  addRootFolder: () => Promise<{ canceled: boolean; filePaths: string[] }>
   // `number` type comes from Antd library, but I'm only ever using `string`
   loadDirectory: (path: string | number) => Promise<Image[]>
   getDirectoryTree: (path: string) => Promise<DataNode[]>

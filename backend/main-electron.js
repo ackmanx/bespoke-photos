@@ -19,11 +19,11 @@ app.whenReady().then(async () => {
   ipcMain.handle('electron-store-get', (event, key) => store.get(key))
   ipcMain.handle('electron-store-set', (event, key, value) => store.set(key, value))
 
-  ipcMain.on('select-folder', (event, data) => {
-    dialog.showOpenDialog(null, data).then((filePaths) => {
-      event.sender.send('open-file-paths', filePaths)
+  ipcMain.handle('select-folder', () =>
+    dialog.showOpenDialog({
+      properties: ['openDirectory'],
     })
-  })
+  )
 
   // Electron won't let you access files via `files://` protocol
   // But if you name your own protocol, you can use it like you would `files://`

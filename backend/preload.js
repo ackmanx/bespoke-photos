@@ -6,14 +6,7 @@ contextBridge.exposeInMainWorld('bs', {
    */
   get: (key) => ipcRenderer.invoke('electron-store-get', key),
   set: (key, value) => ipcRenderer.invoke('electron-store-set', key, value),
-  addRootFolder: () => {
-    ipcRenderer.send('select-folder')
-
-    ipcRenderer.on('open-file-paths', (event, data) => {
-      console.log(`Canceled? ${data.canceled}`)
-      console.log(`File Paths: ${data.filePaths.join(';')}`)
-    })
-  },
+  addRootFolder: () => ipcRenderer.invoke('select-folder'),
 
   /*
    * Render to Main
