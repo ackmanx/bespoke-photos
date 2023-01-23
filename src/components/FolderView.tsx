@@ -43,7 +43,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
             shape='circle'
             icon={<PlusOutlined />}
             style={{ color: Color.fontColor }}
-            onClick={() => {}}
+            onClick={() => window.bs.addRootFolder()}
           />
         </Tooltip>
       </div>

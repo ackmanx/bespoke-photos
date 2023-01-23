@@ -24,7 +24,7 @@ export const App = () => {
       setLoadingProgress(progress)
     })
 
-    window.bs.addRootFolder()
+    console.log(777, window.bs.get('test'))
   }, [])
 
   const handleShowRejectedViewMode = () => setViewMode('rejected')
