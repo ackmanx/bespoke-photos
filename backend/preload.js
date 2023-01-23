@@ -2,13 +2,21 @@ const { contextBridge, ipcRenderer } = require('electron')
 
 contextBridge.exposeInMainWorld('bs', {
   /*
-   * Storage
+   * Storage / Config
    */
   get(key) {
     return ipcRenderer.sendSync('electron-store-get', key)
   },
   set(property, val) {
     ipcRenderer.send('electron-store-set', property, val)
+  },
+  addRootFolder: () => {
+    ipcRenderer.send('select-folder')
+
+    ipcRenderer.on('open-file-paths', (event, data) => {
+      console.log(`Canceled? ${data.canceled}`)
+      console.log(`File Paths: ${data.filePaths.join(';')}`)
+    })
   },
 
   /*

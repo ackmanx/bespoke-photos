@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, protocol } = require('electron')
+const { app, BrowserWindow, ipcMain, protocol, dialog } = require('electron')
 const fs = require('fs')
 const { STORAGE_PATH } = require('./utils')
 const Window = require('./electron-browser-window')
@@ -11,7 +11,7 @@ const store = new Store()
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   ipcMain.handle('get-directory-tree', require('./get-directory-tree').handleGetDirectoryTree)
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
   ipcMain.handle('delete-rejected', require('./delete-rejected').handleDeleteRejected)
@@ -21,6 +21,12 @@ app.whenReady().then(() => {
   })
   ipcMain.on('electron-store-set', async (event, key, val) => {
     store.set(key, val)
+  })
+
+  ipcMain.on('select-folder', (event, data) => {
+    dialog.showOpenDialog(null, data).then((filePaths) => {
+      event.sender.send('open-file-paths', filePaths)
+    })
   })
 
   // Electron won't let you access files via `files://` protocol
