@@ -16,12 +16,8 @@ app.whenReady().then(async () => {
   ipcMain.handle('load-directory', require('./load-directory').handleLoadDirectory)
   ipcMain.handle('delete-rejected', require('./delete-rejected').handleDeleteRejected)
 
-  ipcMain.on('electron-store-get', async (event, val) => {
-    event.returnValue = store.get(val)
-  })
-  ipcMain.on('electron-store-set', async (event, key, val) => {
-    store.set(key, val)
-  })
+  ipcMain.handle('electron-store-get', (event, key) => store.get(key))
+  ipcMain.handle('electron-store-set', (event, key, value) => store.set(key, value))
 
   ipcMain.on('select-folder', (event, data) => {
     dialog.showOpenDialog(null, data).then((filePaths) => {

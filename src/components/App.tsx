@@ -23,8 +23,6 @@ export const App = () => {
     window.bs.onLoadingProgress((_event, progress) => {
       setLoadingProgress(progress)
     })
-
-    console.log(777, window.bs.get('test'))
   }, [])
 
   const handleShowRejectedViewMode = () => setViewMode('rejected')

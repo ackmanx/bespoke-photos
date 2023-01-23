@@ -4,12 +4,8 @@ contextBridge.exposeInMainWorld('bs', {
   /*
    * Storage / Config
    */
-  get(key) {
-    return ipcRenderer.sendSync('electron-store-get', key)
-  },
-  set(property, val) {
-    ipcRenderer.send('electron-store-set', property, val)
-  },
+  get: (key) => ipcRenderer.invoke('electron-store-get', key),
+  set: (key, value) => ipcRenderer.invoke('electron-store-set', key, value),
   addRootFolder: () => {
     ipcRenderer.send('select-folder')
 
