@@ -17,7 +17,7 @@ async function handleLoadDirectory(event, directoryPath) {
     return file.isFile() && ['jpg', 'jpeg'].includes(extension)
   })
 
-  /** @type {Image[]} */
+  /** @type {module:types.Image[]} */
   const imageObjectsToReturn = []
 
   for (const i in fsEntryImages) {
@@ -56,13 +56,16 @@ async function handleLoadDirectory(event, directoryPath) {
       }
     }
 
-    imageObjectsToReturn.push({
+    /** @type {module:types.Image} */
+    const returnImage = {
       src: `bs://${fullImagePath}`,
       pureSrc: fullImagePath,
       thumbSrc: `bs://${thumbnailPath}`,
       thumbPureSrc: `${thumbnailPath}`,
       title: image.name,
-    })
+    }
+
+    imageObjectsToReturn.push(returnImage)
   }
 
   return imageObjectsToReturn
