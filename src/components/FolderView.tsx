@@ -13,17 +13,33 @@ interface Props {
 }
 
 export const FolderView = ({ onDirectorySelect }: Props) => {
-  const [folders, setFolders] = useState<DataNode[]>()
+  const [rootFolders, setRootFolders] = useState<DataNode[]>()
 
   useEffect(() => {
-    Promise.all([
-      window.bs.getDirectoryTree('/Users/varr/Desktop/From Uploaded Root'),
-      window.bs.getDirectoryTree('/Users/varr/Desktop/many-deep'),
-    ]).then((rootFolders) => setFolders(rootFolders.flat()))
+    async function doit() {
+      const rootFolders = await window.bs.get('rootFolders')
+
+      const trees = await Promise.all(
+        rootFolders.map((directory: string) => window.bs.getDirectoryTree(directory))
+      )
+
+      setRootFolders(trees.flat())
+    }
+
+    doit()
   }, [])
 
   const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
     onDirectorySelect(node)
+  }
+
+  const handleAddRootFolder = async () => {
+    const { filePaths } = await window.bs.addRootFolder()
+    const selectedFolder = filePaths[0]
+    const existingFolders = await window.bs.get('rootFolders')
+
+    window.bs.set('rootFolders', [...existingFolders, selectedFolder])
+    window.location.reload()
   }
 
   return (
@@ -43,14 +59,14 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
             shape='circle'
             icon={<PlusOutlined />}
             style={{ color: Color.fontColor }}
-            onClick={async () => console.log('file selected', await window.bs.addRootFolder())}
+            onClick={handleAddRootFolder}
           />
         </Tooltip>
       </div>
       <DirectoryTree
         style={{ backgroundColor: Color.backgroundLight, color: Color.fontColor }}
         onSelect={onSelect}
-        treeData={folders}
+        treeData={rootFolders}
       />
     </div>
   )

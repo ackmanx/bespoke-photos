@@ -5,8 +5,8 @@ import { DataNode } from 'antd/es/tree'
  * The API is declared in `backend/preload.js`
  */
 export interface BespokeApi {
-  get: (key: string) => any
-  set: (key: string, value: any) => void
+  get: (key: StorageKeys) => any
+  set: (key: StorageKeys, value: any) => void
   addRootFolder: () => Promise<{ canceled: boolean; filePaths: string[] }>
   // `number` type comes from Antd library, but I'm only ever using `string`
   loadDirectory: (path: string | number) => Promise<Image[]>
@@ -23,9 +23,6 @@ declare global {
   }
 }
 
-/*
- * Models
- */
 export interface Image {
   // This is in the format of bs://<absolute_path_here>
   src: string
@@ -34,3 +31,5 @@ export interface Image {
   thumbSrc: string
   thumbPureSrc: string
 }
+
+type StorageKeys = 'rootFolders'

@@ -6,7 +6,7 @@ const Store = require('electron-store')
 
 verifyCacheFolderExists()
 
-const store = new Store()
+const store = verifyElectronStoreIsInit()
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -52,4 +52,14 @@ function verifyCacheFolderExists() {
   if (!fs.existsSync(STORAGE_PATH)) {
     fs.mkdirSync(STORAGE_PATH)
   }
+}
+
+function verifyElectronStoreIsInit() {
+  const store = new Store()
+
+  if (!store.get('rootFolders')) {
+    store.set('rootFolders', [])
+  }
+
+  return store
 }
