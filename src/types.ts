@@ -9,7 +9,7 @@ export interface BespokeApi {
   set: (key: StorageKeys, value: any) => void
   addRootFolder: () => Promise<{ canceled: boolean; filePaths: string[] }>
   // `number` type comes from Antd library, but I'm only ever using `string`
-  loadDirectory: (path: string | number) => Promise<Image[]>
+  loadDirectory: (path: string | number) => Promise<Image[] | Error>
   getDirectoryTree: (path: string) => Promise<DataNode[]>
   deleteRejected: (rejectedList: string[]) => Promise<any>
   onLoadingProgress: (
@@ -30,6 +30,10 @@ export interface Image {
   pureSrc: string
   thumbSrc: string
   thumbPureSrc: string
+}
+
+export interface Error {
+  error: string
 }
 
 type StorageKeys = 'rootFolders'

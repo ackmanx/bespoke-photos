@@ -1,4 +1,4 @@
-import { PlusOutlined } from '@ant-design/icons'
+import { DeleteOutlined, EditFilled, EditOutlined, PlusOutlined } from '@ant-design/icons'
 import { Button, Tooltip, Tree } from 'antd'
 import type { DataNode, DirectoryTreeProps } from 'antd/es/tree'
 import { EventDataNode } from 'rc-tree/es/interface'
@@ -14,6 +14,7 @@ interface Props {
 
 export const FolderView = ({ onDirectorySelect }: Props) => {
   const [rootFolders, setRootFolders] = useState<DataNode[]>()
+  const [viewMode, setViewMode] = useState<'display' | 'edit'>('display')
 
   useEffect(() => {
     async function doit() {
@@ -33,9 +34,15 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
     onDirectorySelect(node)
   }
 
+  const handleEditRootFolders = () =>
+    setViewMode((prevState) => (prevState === 'display' ? 'edit' : 'display'))
+
   const handleAddRootFolder = async () => {
     const { filePaths } = await window.bs.addRootFolder()
     const selectedFolder = filePaths[0]
+
+    if (!selectedFolder) return
+
     const existingFolders = await window.bs.get('rootFolders')
 
     window.bs.set('rootFolders', [...existingFolders, selectedFolder])
@@ -53,6 +60,15 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'right', height: '40px', padding: '8px' }}>
+        <Tooltip title='Edit root folders list'>
+          <Button
+            type='ghost'
+            shape='circle'
+            icon={viewMode === 'display' ? <EditOutlined /> : <EditFilled />}
+            style={{ color: Color.fontColor }}
+            onClick={handleEditRootFolders}
+          />
+        </Tooltip>
         <Tooltip title='Add new root folder'>
           <Button
             type='ghost'
@@ -63,11 +79,26 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
           />
         </Tooltip>
       </div>
-      <DirectoryTree
-        style={{ backgroundColor: Color.backgroundLight, color: Color.fontColor }}
-        onSelect={onSelect}
-        treeData={rootFolders}
-      />
+      {viewMode === 'display' ? (
+        <DirectoryTree
+          style={{ backgroundColor: Color.backgroundLight, color: Color.fontColor }}
+          onSelect={onSelect}
+          treeData={rootFolders}
+        />
+      ) : (
+        rootFolders?.map((folder) => (
+          <div key={`${folder.title}`}>
+            <Button
+              type='ghost'
+              shape='circle'
+              icon={<DeleteOutlined />}
+              style={{ color: Color.fontColor }}
+              onClick={handleAddRootFolder}
+            />
+            {folder.title}
+          </div>
+        ))
+      )}
     </div>
   )
 }

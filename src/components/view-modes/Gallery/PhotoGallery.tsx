@@ -10,7 +10,7 @@ interface Props {
   onReject: (src: string) => void
 }
 
-export const PhotoGallery = ({ images, rejectedPhotos, onDoubleClick, onReject }: Props) => {
+export const PhotoGallery = ({ images = [], rejectedPhotos, onDoubleClick, onReject }: Props) => {
   return (
     <div style={{ overflow: 'scroll', height: '94vh' }}>
       {images.map((image, index) => (

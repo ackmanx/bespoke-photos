@@ -2,12 +2,19 @@ const promisify = require('util').promisify
 const fs = require('fs')
 const path = require('path')
 const $readdir = promisify(fs.readdir)
+const $exists = promisify(fs.exists)
 const sharp = require('sharp')
 const { STORAGE_PATH } = require('./utils')
 const Window = require('./electron-browser-window')
 const debug = require('debug')('bs:load-directory.js')
 
 async function handleLoadDirectory(event, directoryPath) {
+  if (!(await $exists(directoryPath))) {
+    return {
+      error: `${directoryPath} not found`,
+    }
+  }
+
   /** @type {Dirent[]} */
   const files = await $readdir(directoryPath, { withFileTypes: true })
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import { Image } from '../types'
+import { Error } from '../types'
 import './App.css'
 import { ContentView } from './ContentView'
 import { FolderView } from './FolderView'
@@ -11,6 +12,10 @@ export type ViewMode = 'gallery' | 'rejected'
 interface LoadingProgress {
   current: number
   total: number
+}
+
+function isError(obj: Image[] | Error): obj is Error {
+  return 'error' in obj
 }
 
 export const App = () => {
@@ -38,7 +43,12 @@ export const App = () => {
     clearTimeout(timeout)
 
     setIsLoading(false)
-    setImages(images)
+
+    if (isError(images)) {
+      console.error(images.error)
+    } else {
+      setImages(images)
+    }
   }
 
   return (
