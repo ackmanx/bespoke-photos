@@ -87,7 +87,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
         />
       ) : (
         rootFolders?.map((folder) => (
-          <div key={`${folder.title}`}>
+          <div>
             <Button
               type='ghost'
               shape='circle'
@@ -95,7 +95,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
               style={{ color: Color.fontColor }}
               onClick={handleAddRootFolder}
             />
-            {folder.title}
+            <>{folder.title}</>
           </div>
         ))
       )}
