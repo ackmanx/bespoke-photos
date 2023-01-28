@@ -49,6 +49,15 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
     window.location.reload()
   }
 
+  const handleDeleteRootFolder = async (folderToDelete: string) => {
+    folderToDelete = folderToDelete.replace('NOT-FOUND ', '')
+
+    const existingFolders: string[] = await window.bs.get('rootFolders')
+    const newListRootFolders = existingFolders.filter((folder) => folder !== folderToDelete)
+
+    window.bs.set('rootFolders', newListRootFolders)
+  }
+
   return (
     <div
       style={{
@@ -80,12 +89,14 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
         </Tooltip>
       </div>
       {viewMode === 'display' ? (
+        // Display mode
         <DirectoryTree
           style={{ backgroundColor: Color.backgroundLight, color: Color.fontColor }}
           onSelect={onSelect}
           treeData={rootFolders}
         />
       ) : (
+        // Edit mode
         rootFolders?.map((folder) => (
           <div>
             <Button
@@ -93,7 +104,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
               shape='circle'
               icon={<DeleteOutlined />}
               style={{ color: Color.fontColor }}
-              onClick={handleAddRootFolder}
+              onClick={() => handleDeleteRootFolder(`${folder.title}`)}
             />
             <>{folder.title}</>
           </div>
