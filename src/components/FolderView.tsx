@@ -17,18 +17,18 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
   const [viewMode, setViewMode] = useState<'display' | 'edit'>('display')
 
   useEffect(() => {
-    async function doit() {
-      const rootFolders = await window.bs.get('rootFolders')
-
-      const trees = await Promise.all(
-        rootFolders.map((directory: string) => window.bs.getDirectoryTree(directory))
-      )
-
-      setRootFolders(trees.flat())
-    }
-
-    doit()
+    populateRootFolders()
   }, [])
+
+  async function populateRootFolders() {
+    const rootFolders = await window.bs.get('rootFolders')
+
+    const trees = await Promise.all(
+      rootFolders.map((directory: string) => window.bs.getDirectoryTree(directory))
+    )
+
+    setRootFolders(trees.flat())
+  }
 
   const onSelect: DirectoryTreeProps['onSelect'] = async (keys, { node }) => {
     onDirectorySelect(node)
@@ -56,6 +56,7 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
     const newListRootFolders = existingFolders.filter((folder) => folder !== folderToDelete)
 
     window.bs.set('rootFolders', newListRootFolders)
+    await populateRootFolders()
   }
 
   return (
@@ -97,18 +98,31 @@ export const FolderView = ({ onDirectorySelect }: Props) => {
         />
       ) : (
         // Edit mode
-        rootFolders?.map((folder) => (
+        <div>
+          <div style={{ textAlign: 'center', fontWeight: 'bold' }}>Edit Root Folders</div>
           <div>
-            <Button
-              type='ghost'
-              shape='circle'
-              icon={<DeleteOutlined />}
-              style={{ color: Color.fontColor }}
-              onClick={() => handleDeleteRootFolder(`${folder.title}`)}
-            />
-            <>{folder.title}</>
-          </div>
-        ))
+            {rootFolders?.map((folder) => (
+              <div
+                key={`${folder.title}`}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  margin: '0 16px',
+                }}
+              >
+                <Button
+                  type='ghost'
+                  shape='circle'
+                  icon={<DeleteOutlined />}
+                  style={{ color: Color.fontColor }}
+                  onClick={() => handleDeleteRootFolder(`${folder.title}`)}
+                />
+                <>{folder.title}</>
+              </div>
+            ))}
+          </div>{' '}
+        </div>
       )}
     </div>
   )
