@@ -19,7 +19,7 @@ function create() {
   })
 
   // This switch allows us to use a dev server or a production build
-  const startUrl = process.env.WEB_URL || `file://${path.join(__dirname, '../dist/index.html')}}`
+  const startUrl = process.env.WEB_URL || `file://${path.join(__dirname, '../dist/index.html')}`
 
   window.maximize()
   window.loadURL(startUrl)
