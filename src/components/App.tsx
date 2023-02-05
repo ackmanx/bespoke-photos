@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
 import { Image } from '../types'
-import { Error } from '../types'
+// It seems Error name conflicts with something when using Vite. Need to import as type explicitly
+import type { Error } from '../types'
 import './App.css'
 import { ContentView } from './ContentView'
 import { FolderView } from './FolderView'
