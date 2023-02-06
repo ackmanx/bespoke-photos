@@ -1,39 +1,38 @@
 {
   "name": "bespoke-photos",
   "scripts": {
-    "start": "TSC_COMPILE_ON_ERROR=true BROWSER=none react-scripts start",
+    "start": "vite --port 3000",
     "start:electron": "DEBUG=bs:* WEB_URL=http://localhost:3000 electron-forge start",
-    "build": "react-scripts build",
+    "build": "vite build",
     "go": "yarn build; yarn make",
     "make": "electron-forge make",
     "package": "electron-forge package",
     "prettier": "prettier --config ./prettier.config.js --write './**/*.{js,jsx,json,ts,tsx}'"
   },
-  "devDependencies": {
-    "@electron-forge/cli": "^6.0.4",
-    "@electron-forge/maker-deb": "^6.0.4",
-    "@electron-forge/maker-rpm": "^6.0.4",
-    "@electron-forge/maker-squirrel": "^6.0.4",
-    "@electron-forge/maker-zip": "^6.0.4",
-    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
-    "electron": "^22.0.0",
-    "prettier": "^2.8.1"
-  },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
-    "@types/node": "^16.11.33",
-    "@types/react": "^18.0.8",
-    "@types/react-dom": "^18.0.3",
     "antd": "^5.1.2",
     "debug": "^4.3.4",
-    "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-scripts": "5.0.1",
+    "sass": "^1.58.0",
     "sharp": "^0.31.3",
-    "typescript": "^4.6.4",
     "yet-another-react-lightbox": "^2.2.5"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.4",
+    "@electron-forge/maker-dmg": "^6.0.4",
+    "@trivago/prettier-plugin-sort-imports": "^4.0.0",
+    "@types/node": "^16.11.33",
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron": "^22.0.0",
+    "prettier": "^2.8.1",
+    "typescript": "^4.6.4",
+    "vite": "^4.1.1"
   },
   "eslintConfig": {
     "extends": [

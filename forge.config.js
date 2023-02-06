@@ -1,24 +1,20 @@
 module.exports = {
-  packagerConfig: {},
+  hooks: {
+    prePackage: async () => {
+      // clean directories first
+      // make index.html asset imports relative
+    },
+  },
+  packagerConfig: {
+    ignore: ['/node_modules/.cache', '/node_modules/.vite'],
+  },
   rebuildConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
+      name: '@electron-forge/maker-dmg',
       config: {
-        name: 'cra_ef_typescript',
+        format: 'ULFO',
       },
-    },
-    {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
-    },
-    {
-      name: '@electron-forge/maker-deb',
-      config: {},
-    },
-    {
-      name: '@electron-forge/maker-rpm',
-      config: {},
     },
   ],
 }
